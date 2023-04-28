@@ -8,7 +8,7 @@ import HeaderNavigation from '../header-navigation/header-navigation';
 
 const AppHeader = () => {
   return (
-    <header className={`${styles.header} text text_type_main-default mb-10`}>
+    <header className={`${styles.header} text text_type_main-default`}>
       <div className={styles.content}>
         <HeaderNavigation />
         <Logo />

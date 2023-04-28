@@ -24,7 +24,7 @@ const BurgerIngredients = ({ data }) => {
   }
 
   return (
-    <section className={`${styles.container}`}>
+    <section className={`${styles.container} pt-10`}>
       <h2 className={'text text_type_main-large mb-5'}>Соберите бургер</h2>
       <BurgerIngredientsTabs current={currentTab} setCurrent={setCurrentType}/>
       <BurgerIngredientsTypesList data={data} bunRef={bunRef} sauceRef={sauceRef} mainRef={mainRef}/>

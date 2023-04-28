@@ -24,11 +24,11 @@
 .container::-webkit-scrollbar-track {
   background: transparent;
   background-color: #2f2f37;
-  margin-bottom: 140px;
+  margin-bottom: 100px;
 }
 
 .container::-webkit-scrollbar-thumb {
-  height: calc(100% - 310px);
+  height: calc(100% - 270px);
   background: #8585ad;
 }
 
