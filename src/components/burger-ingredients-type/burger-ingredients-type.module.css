@@ -1,0 +1,13 @@
+.list {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 24px;
+  margin: 0 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.card__head {
+  margin: 0 0 24px 0;
+}
+
