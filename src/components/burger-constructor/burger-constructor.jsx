@@ -18,7 +18,7 @@ const BurgerConstructor = ({ data }) => {
               price={data[0].price}
               thumbnail={data[0].image}
             />
-            <ul className={styles.toppings__container}>
+            <ul className={`${styles.toppings__container} custom-scroll`}>
               <BurgerConstructorToppingsList data={data} />
             </ul>
             <ConstructorElement

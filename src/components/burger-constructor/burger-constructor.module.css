@@ -30,15 +30,3 @@
   overflow-y: scroll;
   padding-right: 8px;
 }
-
-.toppings__container::-webkit-scrollbar {
-  width: 8px;
-}
-
-.toppings__container::-webkit-scrollbar-track {
-  background-color: #2f2f37;
-}
-
-.toppings__container::-webkit-scrollbar-thumb {
-  background-color: #8585ad;
-}

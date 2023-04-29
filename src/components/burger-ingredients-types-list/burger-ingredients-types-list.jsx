@@ -14,7 +14,7 @@ const BurgerIngredientsTypesList = ({
   mainRef,
 }) => {
   return (
-    <ul className={styles.types__list}>
+    <ul className={`${styles.types__list} custom-scroll`}>
       <BurgerIngredientsType
         data={data}
         config={config}
