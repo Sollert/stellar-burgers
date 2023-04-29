@@ -1,5 +1,6 @@
 import styles from './burger-constructor-order-submit.module.css';
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import PropTypes from 'prop-types';
 
 const BurgerConstructorOrderSubmit = ({totalPrice}) => {
   return (
@@ -13,6 +14,10 @@ const BurgerConstructorOrderSubmit = ({totalPrice}) => {
       </Button>
     </div>
   );
+};
+
+BurgerConstructorOrderSubmit.propType = {
+  totalPrice: PropTypes.number.isRequired,
 };
 
 export default BurgerConstructorOrderSubmit;

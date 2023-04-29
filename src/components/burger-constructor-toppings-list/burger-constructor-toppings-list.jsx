@@ -1,4 +1,5 @@
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
+import PropTypes from 'prop-types';
 
 export const BurgerConstructorToppingsList = ({ data }) => {
   return data.map((item) => {
@@ -15,6 +16,10 @@ export const BurgerConstructorToppingsList = ({ data }) => {
     }
     return null;
   });
+};
+
+BurgerConstructorToppingsList.propType = {
+  data: PropTypes.array.isRequired,
 };
 
 export default BurgerConstructorToppingsList;

@@ -3,6 +3,7 @@ import {
   Counter,
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-ingredients-card.module.css';
+import { ingredientPropType } from '../../utils/prop-types';
 
 const BurgerIngredientsCard = ({ item }) => {
   return (
@@ -16,6 +17,10 @@ const BurgerIngredientsCard = ({ item }) => {
       <h4 className={'text text_type_main-default'}>{item.name}</h4>
     </li>
   );
+};
+
+BurgerIngredientsCard.propTypes = {
+  item: ingredientPropType,
 };
 
 export default BurgerIngredientsCard;

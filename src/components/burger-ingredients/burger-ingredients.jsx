@@ -1,5 +1,6 @@
 import styles from './burger-ingredients.module.css';
 import { useState, useRef } from 'react';
+import PropTypes from 'prop-types';
 
 import BurgerIngredientsTabs from '../burger-ingredients-tabs/burger-ingredients-tabs';
 import BurgerIngredientsTypesList from '../burger-ingredients-types-list/burger-ingredients-types-list';
@@ -37,5 +38,11 @@ const BurgerIngredients = ({ data, config }) => {
     </section>
   );
 };
+
+BurgerIngredients.propType = {
+  data: PropTypes.array.isRequired,
+  config: PropTypes.object.isRequired,
+};
+
 
 export default BurgerIngredients;

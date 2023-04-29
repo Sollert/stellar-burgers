@@ -1,7 +1,8 @@
 import styles from './burger-ingredients-tabs.module.css';
-import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
+import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
+import PropTypes from 'prop-types';
 
-const BurgerIngredientsTabs = ({current, setCurrent}) => {
+const BurgerIngredientsTabs = ({ current, setCurrent }) => {
   return (
     <ul className={`${styles.tabs__list} mb-10`}>
       <Tab value="Булки" active={current === 'Булки'} onClick={setCurrent}>
@@ -15,6 +16,11 @@ const BurgerIngredientsTabs = ({current, setCurrent}) => {
       </Tab>
     </ul>
   );
+};
+
+BurgerIngredientsTabs.propType = {
+  current: PropTypes.string.isRequired,
+  setCurrent: PropTypes.func.isRequired,
 };
 
 export default BurgerIngredientsTabs;
