@@ -6,26 +6,30 @@ import BurgerConstructorOrderSubmit from '../burger-constructor-order-submit/bur
 const BurgerConstructor = ({ data }) => {
   return (
     <section className={styles.section__container}>
-      <ul className={`${styles.ingredients__container}`}>
-        <ConstructorElement
-          type="top"
-          isLocked={true}
-          text={`${data[0].name} (верх)`}
-          price={data[0].price}
-          thumbnail={data[0].image}
-        />
-        <ul className={styles.toppings__container}>
-          <BurgerConstructorToppingsList data={data} />
-        </ul>
-        <ConstructorElement
-          type="bottom"
-          isLocked={true}
-          text={`${data[0].name} (низ)`}
-          price={data[0].price}
-          thumbnail={data[0].image}
-        />
-      </ul>
-      <BurgerConstructorOrderSubmit totalPrice={610} />
+      {data.length > 0 && (
+        <>
+          <ul className={`${styles.ingredients__container}`}>
+            <ConstructorElement
+              type="top"
+              isLocked={true}
+              text={`${data[0].name} (верх)`}
+              price={data[0].price}
+              thumbnail={data[0].image}
+            />
+            <ul className={styles.toppings__container}>
+              <BurgerConstructorToppingsList data={data} />
+            </ul>
+            <ConstructorElement
+              type="bottom"
+              isLocked={true}
+              text={`${data[0].name} (низ)`}
+              price={data[0].price}
+              thumbnail={data[0].image}
+            />
+          </ul>
+          <BurgerConstructorOrderSubmit totalPrice={610} />
+        </>
+      )}
     </section>
   );
 };
