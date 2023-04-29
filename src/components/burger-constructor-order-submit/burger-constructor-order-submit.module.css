@@ -1,0 +1,13 @@
+.submit__container {
+	display: flex;
+	gap: 41px;
+	align-self: flex-start;
+	justify-self: flex-end;
+}
+
+.price__container {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	margin: 0;
+}

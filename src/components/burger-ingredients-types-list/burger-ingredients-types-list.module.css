@@ -1,4 +1,4 @@
-.container {
+.types__list {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
@@ -8,34 +8,17 @@
   gap: 40px;
 }
 
-.card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 272px;
-  height: 208px;
-  text-align: center;
-}
-
-.container::-webkit-scrollbar {
+.types__list::-webkit-scrollbar {
   width: 8px;
 }
 
-.container::-webkit-scrollbar-track {
+.types__list::-webkit-scrollbar-track {
   background: transparent;
   background-color: #2f2f37;
   margin-bottom: 100px;
 }
 
-.container::-webkit-scrollbar-thumb {
+.types__list::-webkit-scrollbar-thumb {
   height: calc(100% - 270px);
   background: #8585ad;
-}
-
-.card__priceContainer {
-  margin: 0 0 8px 0;
-  display: flex;
-  gap: 9px;
-  align-items: center;
-  justify-content: center;
 }

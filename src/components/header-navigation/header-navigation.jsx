@@ -7,8 +7,8 @@ import {
 
 const HeaderNavigation = () => {
   return (
-    <nav className={styles.navigation}>
-      <ul className={styles.list}>
+    <nav className={styles.header__navigation}>
+      <ul className={styles.header__list}>
         <li className={'pt-4 pb-4 pl-5 pr-5'}>
           <HeaderLink isActive={true} text={'Конструктор'}>
             <BurgerIcon type={'primary'} />

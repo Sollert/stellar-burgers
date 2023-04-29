@@ -3,7 +3,7 @@ import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 
 const BurgerIngredientsTabs = ({current, setCurrent}) => {
   return (
-    <ul className={`${styles.list} mb-10`}>
+    <ul className={`${styles.tabs__list} mb-10`}>
       <Tab value="Булки" active={current === 'Булки'} onClick={setCurrent}>
         Булки
       </Tab>

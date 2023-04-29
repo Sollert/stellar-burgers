@@ -1,4 +1,4 @@
-.list {
+.type__list {
   display: flex;
   flex-flow: row wrap;
   gap: 24px;
@@ -7,7 +7,7 @@
   list-style: none;
 }
 
-.card__head {
+.card__title {
   margin: 0 0 24px 0;
 }
 

@@ -1,8 +1,8 @@
-.navigation {
+.header__navigation {
 	justify-self: flex-start;
 }
 
-.list {
+.header__list {
   display: flex;
 	gap: 8px;
   list-style: none;

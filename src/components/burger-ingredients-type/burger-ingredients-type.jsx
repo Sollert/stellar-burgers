@@ -1,15 +1,18 @@
 import styles from './burger-ingredients-type.module.css';
-import BurgerIngredientsCardList from '../burger-ingredients-card-list/burger-ingredients-card-list';
+import BurgerIngredientsCardsList from '../burger-ingredients-cards-list/burger-ingredients-cards-list';
 import { forwardRef } from 'react';
 
-const BurgerIngredientsType = forwardRef(({data, type}, ref) => {
+const BurgerIngredientsType = forwardRef(({ data, type, config }, ref) => {
   return (
     <li>
-      <h3 className={`${styles.card__head} text text_type_main-medium`} ref={ref}>
-        {data[type].title}
+      <h3
+        className={`${styles.card__title} text text_type_main-medium`}
+        ref={ref}
+      >
+        {config[type].title}
       </h3>
-      <ul className={styles.list}>
-        <BurgerIngredientsCardList data={data} type={type} />
+      <ul className={styles.type__list}>
+        <BurgerIngredientsCardsList data={data} type={type} />
       </ul>
     </li>
   );
