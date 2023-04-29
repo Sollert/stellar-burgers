@@ -2,6 +2,10 @@ import styles from './burger-ingredients-type.module.css';
 import BurgerIngredientsCardsList from '../burger-ingredients-cards-list/burger-ingredients-cards-list';
 import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
+import {
+  ingredientPropType,
+  ingredientConfigPropType,
+} from '../../utils/prop-types';
 
 const BurgerIngredientsType = forwardRef(({ data, type, config }, ref) => {
   return (
@@ -20,9 +24,9 @@ const BurgerIngredientsType = forwardRef(({ data, type, config }, ref) => {
 });
 
 BurgerIngredientsType.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
+  config: ingredientConfigPropType.isRequired,
   type: PropTypes.string.isRequired,
-  config: PropTypes.object.isRequired,
 };
 
 export default BurgerIngredientsType;

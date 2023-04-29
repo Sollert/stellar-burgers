@@ -1,6 +1,10 @@
 import styles from './burger-ingredients-types-list.module.css';
 import BurgerIngredientsType from '../burger-ingredients-type/burger-ingredients-type';
 import PropTypes from 'prop-types';
+import {
+  ingredientPropType,
+  ingredientConfigPropType,
+} from '../../utils/prop-types';
 
 const BurgerIngredientsTypesList = ({
   data,
@@ -34,11 +38,11 @@ const BurgerIngredientsTypesList = ({
 };
 
 BurgerIngredientsTypesList.propTypes = {
-  data: PropTypes.array.isRequired,
-  config: PropTypes.object.isRequired,
-  bunRef: PropTypes.object.isRequired,
-  sauceRef: PropTypes.object.isRequired,
-  mainRef: PropTypes.object.isRequired,
+  data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
+  config: ingredientConfigPropType.isRequired,
+  bunRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  sauceRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  mainRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
 };
 
 export default BurgerIngredientsTypesList;

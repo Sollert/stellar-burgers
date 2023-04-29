@@ -1,5 +1,6 @@
 import BurgerIngredientsCard from '../burger-ingredients-card/burger-ingredients-card';
 import PropTypes from 'prop-types';
+import { ingredientPropType } from '../../utils/prop-types.js';
 
 export const BurgerIngredientsCardsList = ({ data, type }) => {
   return data.map((item) => {
@@ -11,7 +12,7 @@ export const BurgerIngredientsCardsList = ({ data, type }) => {
 };
 
 BurgerIngredientsCardsList.propType = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
   type: PropTypes.string.isRequired,
 };
 

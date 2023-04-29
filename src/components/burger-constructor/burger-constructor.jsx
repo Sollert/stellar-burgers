@@ -3,6 +3,7 @@ import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-comp
 import BurgerConstructorToppingsList from '../burger-constructor-toppings-list/burger-constructor-toppings-list';
 import BurgerConstructorOrderSubmit from '../burger-constructor-order-submit/burger-constructor-order-submit';
 import PropTypes from 'prop-types';
+import { ingredientPropType } from '../../utils/prop-types';
 
 const BurgerConstructor = ({ data }) => {
   return (
@@ -36,7 +37,7 @@ const BurgerConstructor = ({ data }) => {
 };
 
 BurgerConstructor.propType = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
 };
 
 export default BurgerConstructor;
