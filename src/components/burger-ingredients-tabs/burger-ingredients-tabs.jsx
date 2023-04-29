@@ -19,7 +19,7 @@ const BurgerIngredientsTabs = ({ current, setCurrent }) => {
 };
 
 BurgerIngredientsTabs.propType = {
-  current: PropTypes.string.isRequired,
+  current: PropTypes.oneOf(['Булки', 'Соусы', 'Начинки']).isRequired,
   setCurrent: PropTypes.func.isRequired,
 };
 

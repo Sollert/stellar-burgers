@@ -17,3 +17,7 @@ export const ingredientConfigPropType = PropTypes.shape({
     title: PropTypes.string.isRequired,
   }).isRequired,
 });
+
+export const refsPropType = PropTypes.shape({
+  current: PropTypes.instanceOf(Element),
+});

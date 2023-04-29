@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {
   ingredientPropType,
   ingredientConfigPropType,
+  refsPropType
 } from '../../utils/prop-types';
 
 const BurgerIngredientsTypesList = ({
@@ -40,9 +41,9 @@ const BurgerIngredientsTypesList = ({
 BurgerIngredientsTypesList.propTypes = {
   data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
   config: ingredientConfigPropType.isRequired,
-  bunRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
-  sauceRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
-  mainRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  bunRef: refsPropType.isRequired,
+  sauceRef: refsPropType.isRequired,
+  mainRef: refsPropType.isRequired,
 };
 
 export default BurgerIngredientsTypesList;
