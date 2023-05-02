@@ -1,9 +1,9 @@
 import styles from './burger-constructor.module.css';
+import PropTypes from 'prop-types';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
+import { ingredientPropType } from '../../utils/prop-types';
 import BurgerConstructorToppingsList from '../burger-constructor-toppings-list/burger-constructor-toppings-list';
 import BurgerConstructorOrderSubmit from '../burger-constructor-order-submit/burger-constructor-order-submit';
-import PropTypes from 'prop-types';
-import { ingredientPropType } from '../../utils/prop-types';
 
 const BurgerConstructor = ({ data, handleCreateOrder }) => {
   return (
