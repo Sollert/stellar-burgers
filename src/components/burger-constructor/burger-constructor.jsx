@@ -5,7 +5,7 @@ import BurgerConstructorOrderSubmit from '../burger-constructor-order-submit/bur
 import PropTypes from 'prop-types';
 import { ingredientPropType } from '../../utils/prop-types';
 
-const BurgerConstructor = ({ data }) => {
+const BurgerConstructor = ({ data, handleCreateOrder }) => {
   return (
     <section className={styles.section__container}>
       {data.length > 0 && (
@@ -29,7 +29,10 @@ const BurgerConstructor = ({ data }) => {
               thumbnail={data[0].image}
             />
           </ul>
-          <BurgerConstructorOrderSubmit totalPrice={610} />
+          <BurgerConstructorOrderSubmit
+            totalPrice={610}
+            handleCreateOrder={handleCreateOrder}
+          />
         </>
       )}
     </section>
@@ -38,6 +41,7 @@ const BurgerConstructor = ({ data }) => {
 
 BurgerConstructor.propType = {
   data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
+  handleCreateOrder: PropTypes.func.isRequired,
 };
 
 export default BurgerConstructor;

@@ -7,7 +7,7 @@ import {
   ingredientConfigPropType,
 } from '../../utils/prop-types';
 
-const BurgerIngredientsType = forwardRef(({ data, type, config }, ref) => {
+const BurgerIngredientsType = forwardRef(({ data, type, config, openModal }, ref) => {
   return (
     <li>
       <h3
@@ -17,7 +17,7 @@ const BurgerIngredientsType = forwardRef(({ data, type, config }, ref) => {
         {config[type].title}
       </h3>
       <ul className={styles.type__list}>
-        <BurgerIngredientsCardsList data={data} type={type} />
+        <BurgerIngredientsCardsList data={data} type={type} openModal={openModal} />
       </ul>
     </li>
   );
@@ -27,6 +27,7 @@ BurgerIngredientsType.propTypes = {
   data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
   config: ingredientConfigPropType.isRequired,
   type: PropTypes.string.isRequired,
+  openModal: PropTypes.func.isRequired,
 };
 
 export default BurgerIngredientsType;

@@ -1,0 +1,23 @@
+.details__container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.details__list {
+	text-align: center;
+	list-style: none;
+  display: grid;
+  grid-template-columns: 120px repeat(3, 112px);
+  width: 516px;
+  gap: 20px;
+  padding-left: 0;
+  margin: 0;
+}
+
+.details__listItem {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}

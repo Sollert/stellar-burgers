@@ -9,7 +9,7 @@ import {
 import BurgerIngredientsTabs from '../burger-ingredients-tabs/burger-ingredients-tabs';
 import BurgerIngredientsTypesList from '../burger-ingredients-types-list/burger-ingredients-types-list';
 
-const BurgerIngredients = ({ data, config }) => {
+const BurgerIngredients = ({ data, config, openModal }) => {
   const [currentTab, setCurrentTab] = useState('Булки');
 
   const bunRef = useRef();
@@ -38,6 +38,7 @@ const BurgerIngredients = ({ data, config }) => {
         bunRef={bunRef}
         sauceRef={sauceRef}
         mainRef={mainRef}
+        openModal={openModal}
       />
     </section>
   );
@@ -46,6 +47,7 @@ const BurgerIngredients = ({ data, config }) => {
 BurgerIngredients.propType = {
   data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
   config: ingredientConfigPropType.isRequired,
+  openModal: PropTypes.func.isRequired,
 };
 
 export default BurgerIngredients;

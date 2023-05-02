@@ -7,8 +7,19 @@ import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import { useEffect, useState } from 'react';
 
+import Modal from '../modal/modal';
+import OrderDetails from '../order-details/order-details';
+import IngredientDetails from '../ingredient-details/ingredient-details';
+
 function App() {
   const [ingredientsData, setIngredientsData] = useState([]);
+  const [modalOrderState, setModalOrderState] = useState({
+    visible: false,
+  });
+  const [modalIngredientState, setmodalIngredientState] = useState({
+    visible: false,
+  });
+  const [ingredient, setIngredient] = useState({});
 
   useEffect(() => {
     const getIngredients = async () => {
@@ -23,6 +34,23 @@ function App() {
     getIngredients();
   }, []);
 
+  const handleCloseModalOrder = () => {
+    setModalOrderState({ visible: false });
+  };
+
+  const handleOpenModalIngredient = (data) => {
+    setIngredient(data)
+    setmodalIngredientState({ visible: true });
+  };
+
+  const handleCloseModalIngredient = () => {
+    setmodalIngredientState({ visible: false });
+  };
+
+  const handleCreateOrder = () => {
+    setModalOrderState({ visible: true });
+  };
+
   return (
     <>
       <AppHeader />
@@ -30,9 +58,23 @@ function App() {
         <BurgerIngredients
           data={ingredientsData}
           config={burgerIngredientsConfig}
+          openModal={handleOpenModalIngredient}
         />
-        <BurgerConstructor data={ingredientsData} />
+        <BurgerConstructor
+          data={ingredientsData}
+          handleCreateOrder={handleCreateOrder}
+        />
       </main>
+      {modalOrderState.visible && (
+        <Modal closeModal={handleCloseModalOrder}>
+          <OrderDetails />
+        </Modal>
+      )}
+      {modalIngredientState.visible && (
+        <Modal closeModal={handleCloseModalIngredient} title={'Детали ингредиента'}>
+          <IngredientDetails ingredient={ingredient} />
+        </Modal>
+      )}
     </>
   );
 }

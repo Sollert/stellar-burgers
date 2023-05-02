@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {
   ingredientPropType,
   ingredientConfigPropType,
-  refsPropType
+  refsPropType,
 } from '../../utils/prop-types';
 
 const BurgerIngredientsTypesList = ({
@@ -13,6 +13,7 @@ const BurgerIngredientsTypesList = ({
   bunRef,
   sauceRef,
   mainRef,
+  openModal,
 }) => {
   return (
     <ul className={`${styles.types__list} custom-scroll`}>
@@ -21,18 +22,21 @@ const BurgerIngredientsTypesList = ({
         config={config}
         type={'bun'}
         ref={bunRef}
+        openModal={openModal}
       />
       <BurgerIngredientsType
         data={data}
         config={config}
         type={'sauce'}
         ref={sauceRef}
+        openModal={openModal}
       />
       <BurgerIngredientsType
         data={data}
         config={config}
         type={'main'}
         ref={mainRef}
+        openModal={openModal}
       />
     </ul>
   );
@@ -44,6 +48,7 @@ BurgerIngredientsTypesList.propTypes = {
   bunRef: refsPropType.isRequired,
   sauceRef: refsPropType.isRequired,
   mainRef: refsPropType.isRequired,
+  openModal: PropTypes.func.isRequired,
 };
 
 export default BurgerIngredientsTypesList;
