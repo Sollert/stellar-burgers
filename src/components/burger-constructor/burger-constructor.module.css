@@ -1,0 +1,31 @@
+.section__container {
+  padding: 100px 0 0 0;
+  display: grid;
+  align-content: flex-start;
+  justify-content: flex-end;
+  max-width: 600px;
+  width: 100%;
+  gap: 40px;
+}
+
+.ingredients__container {
+  display: flex;
+  flex-direction: column;
+  justify-self: flex-end;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  gap: 16px;
+}
+
+.toppings__container {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  justify-self: flex-end;
+  margin: 0;
+  padding: 0 8px 0 0;
+  list-style: none;
+  height: calc(100vh - 535px);
+  overflow-y: scroll;
+}

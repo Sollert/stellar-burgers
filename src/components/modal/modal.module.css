@@ -1,0 +1,28 @@
+.modal__container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 40px;
+  background-color: #1c1c21;
+  width: 720px;
+  min-height: 539px;
+  box-shadow: 0px 24px 32px rgba(0, 0, 0, 0.04),
+    0px 16px 24px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.04),
+    0px 0px 1px rgba(0, 0, 0, 0.04);
+}
+
+.modal__closeButton {
+  position: absolute;
+  top: 60px;
+  right: 40px;
+  background: none;
+  outline: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.modal__title {
+  margin: 53px 0 12px 40px;
+}
