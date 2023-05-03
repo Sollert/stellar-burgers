@@ -11,23 +11,29 @@ const BurgerConstructor = ({ data, handleCreateOrder }) => {
       {data.length > 0 && (
         <>
           <ul className={`${styles.ingredients__container}`}>
-            <ConstructorElement
-              type="top"
-              isLocked={true}
-              text={`${data[0].name} (верх)`}
-              price={data[0].price}
-              thumbnail={data[0].image}
-            />
-            <ul className={`${styles.toppings__container} custom-scroll`}>
-              <BurgerConstructorToppingsList data={data} />
-            </ul>
-            <ConstructorElement
-              type="bottom"
-              isLocked={true}
-              text={`${data[0].name} (низ)`}
-              price={data[0].price}
-              thumbnail={data[0].image}
-            />
+            <li className={'ml-8'}>
+              <ConstructorElement
+                type="top"
+                isLocked={true}
+                text={`${data[0].name} (верх)`}
+                price={data[0].price}
+                thumbnail={data[0].image}
+              />
+            </li>
+            <li>
+              <ul className={`${styles.toppings__container} custom-scroll`}>
+                <BurgerConstructorToppingsList data={data} />
+              </ul>
+            </li>
+            <li className={'ml-8'}>
+              <ConstructorElement
+                type="bottom"
+                isLocked={true}
+                text={`${data[0].name} (низ)`}
+                price={data[0].price}
+                thumbnail={data[0].image}
+              />
+            </li>
           </ul>
           <BurgerConstructorOrderSubmit
             totalPrice={610}

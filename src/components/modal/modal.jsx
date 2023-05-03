@@ -32,7 +32,7 @@ const Modal = ({ children, closeModal, title }) => {
         {children}
       </div>
     </ModalOverlay>,
-    document.body
+    document.querySelector('#modal')
   );
 };
 
