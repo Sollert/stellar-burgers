@@ -1,7 +1,12 @@
-import styles from './app.module.css';
-import { useEffect, useState } from 'react';
-import { getIngredientsData } from '../../utils/api';
-import { burgerIngredientsConfig } from '../../utils/config';
+import { useEffect, useReducer, useState } from 'react';
+
+import { BurgerIngredientsContext } from '../../services/contexts/burger-ingredients-context';
+import { BurgerConstructorContext } from '../../services/contexts/burger-constructor-context';
+
+import {
+  inititalCartState,
+  cartReducer,
+} from '../../services/reducers/burger-cart-reducer';
 
 import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
@@ -10,7 +15,13 @@ import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 
+import { getIngredientsData } from '../../utils/api';
+import { burgerIngredientsConfig } from '../../utils/config';
+
+import styles from './app.module.css';
+
 function App() {
+  const [cart, cartDispatch] = useReducer(cartReducer, inititalCartState);
   const [ingredientsData, setIngredientsData] = useState([]);
   const [modalOrderState, setModalOrderState] = useState({
     visible: false,
@@ -19,6 +30,7 @@ function App() {
     visible: false,
   });
   const [ingredient, setIngredient] = useState({});
+  const [orderDetails, setOrderDetails] = useState();
 
   useEffect(() => {
     const getIngredients = async () => {
@@ -46,7 +58,7 @@ function App() {
     setmodalIngredientState({ visible: false });
   };
 
-  const handleCreateOrder = () => {
+  const handleOpenOrderModal = () => {
     setModalOrderState({ visible: true });
   };
 
@@ -54,19 +66,24 @@ function App() {
     <>
       <AppHeader />
       <main className={styles.main}>
-        <BurgerIngredients
-          data={ingredientsData}
-          config={burgerIngredientsConfig}
-          openModal={handleOpenModalIngredient}
-        />
-        <BurgerConstructor
-          data={ingredientsData}
-          handleCreateOrder={handleCreateOrder}
-        />
+        <BurgerConstructorContext.Provider value={{ cart, cartDispatch }}>
+          <BurgerIngredientsContext.Provider
+            value={{ ingredientsData, setIngredientsData }}
+          >
+            <BurgerIngredients
+              config={burgerIngredientsConfig}
+              openModal={handleOpenModalIngredient}
+            />
+          </BurgerIngredientsContext.Provider>
+          <BurgerConstructor
+            openModal={handleOpenOrderModal}
+            setOrderDetails={setOrderDetails}
+          />
+        </BurgerConstructorContext.Provider>
       </main>
       {modalOrderState.visible && (
         <Modal closeModal={handleCloseModalOrder}>
-          <OrderDetails />
+          <OrderDetails number={orderDetails['order'].number} />
         </Modal>
       )}
       {modalIngredientState.visible && (

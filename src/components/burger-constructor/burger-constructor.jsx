@@ -1,53 +1,91 @@
-import styles from './burger-constructor.module.css';
-import PropTypes from 'prop-types';
+import { useContext } from 'react';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
-import { ingredientPropType } from '../../utils/prop-types';
+import PropTypes from 'prop-types';
+
+import { BurgerConstructorContext } from '../../services/contexts/burger-constructor-context';
+
 import BurgerConstructorToppingsList from '../burger-constructor-toppings-list/burger-constructor-toppings-list';
 import BurgerConstructorOrderSubmit from '../burger-constructor-order-submit/burger-constructor-order-submit';
 
-const BurgerConstructor = ({ data, handleCreateOrder }) => {
+import { createOrder } from '../../utils/api';
+
+import styles from './burger-constructor.module.css';
+
+const BurgerConstructor = ({ openModal, setOrderDetails }) => {
+  const { cart, cartDispatch } = useContext(BurgerConstructorContext);
+
+  const resetCart = () => {
+    cartDispatch({ type: 'RESET_CART' });
+  };
+
+  const handleCreateOrder = () => {
+    createOrder(cart.ids)
+      .then(setOrderDetails)
+      .then(openModal)
+      .then(resetCart)
+      .catch((error) => console.log(error));
+  };
+
   return (
     <section className={styles.section__container}>
-      {data.length > 0 && (
-        <>
-          <ul className={`${styles.ingredients__container}`}>
-            <li className={'ml-8'}>
-              <ConstructorElement
-                type="top"
-                isLocked={true}
-                text={`${data[0].name} (верх)`}
-                price={data[0].price}
-                thumbnail={data[0].image}
-              />
-            </li>
-            <li>
-              <ul className={`${styles.toppings__container} custom-scroll`}>
-                <BurgerConstructorToppingsList data={data} />
-              </ul>
-            </li>
-            <li className={'ml-8'}>
-              <ConstructorElement
-                type="bottom"
-                isLocked={true}
-                text={`${data[0].name} (низ)`}
-                price={data[0].price}
-                thumbnail={data[0].image}
-              />
-            </li>
+      <ul className={`${styles.ingredients__container}`}>
+        <li className={'ml-10'}>
+          {cart['bun'] ? (
+            <ConstructorElement
+              type="top"
+              isLocked={true}
+              text={`${cart['bun']?.name} (верх)`}
+              price={cart['bun']?.price}
+              thumbnail={cart['bun']?.image}
+            />
+          ) : (
+            <div className={`${styles.bun__empty} ${styles.bun__empty_top}`}>
+              <span
+                className={`${styles.bun__emptyText} text text_type_main-default`}
+              >
+                Выбери булку
+              </span>
+            </div>
+          )}
+        </li>
+        <li>
+          <ul className={`${styles.toppings__container} custom-scroll`}>
+            <BurgerConstructorToppingsList />
           </ul>
-          <BurgerConstructorOrderSubmit
-            totalPrice={610}
-            handleCreateOrder={handleCreateOrder}
-          />
-        </>
-      )}
+        </li>
+        <li className={'ml-10'}>
+          {cart['bun'] ? (
+            <ConstructorElement
+              type="bottom"
+              isLocked={true}
+              text={`${cart['bun']?.name} (низ)`}
+              price={cart['bun']?.price}
+              thumbnail={cart['bun']?.image}
+            />
+          ) : (
+            <div className={`${styles.bun__empty} ${styles.bun__empty_bottom}`}>
+              <span
+                className={`${styles.bun__emptyText} text text_type_main-default`}
+              >
+                Выбери булку
+              </span>
+            </div>
+          )}
+        </li>
+      </ul>
+      {cart['bun'] ? (
+        <BurgerConstructorOrderSubmit
+          totalPrice={cart.totalPrice}
+          handleCreateOrder={handleCreateOrder}
+        />
+      ) : null}
     </section>
   );
 };
 
 BurgerConstructor.propType = {
-  data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
-  handleCreateOrder: PropTypes.func.isRequired,
+  openModal: PropTypes.func.isRequired,
+  setOrderDetails: PropTypes.func.isRequired,
 };
 
 export default BurgerConstructor;

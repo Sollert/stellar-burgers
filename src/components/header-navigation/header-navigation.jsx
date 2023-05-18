@@ -1,9 +1,11 @@
-import styles from './header-navigation.module.css';
-import HeaderLink from '../header-link/header-link';
 import {
   BurgerIcon,
   ListIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
+
+import HeaderLink from '../header-link/header-link';
+
+import styles from './header-navigation.module.css';
 
 const HeaderNavigation = () => {
   return (
