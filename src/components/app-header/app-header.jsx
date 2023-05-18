@@ -1,10 +1,12 @@
-import styles from './app-header.module.css';
 import {
   Logo,
   ProfileIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
+
 import HeaderLink from '../header-link/header-link';
 import HeaderNavigation from '../header-navigation/header-navigation';
+
+import styles from './app-header.module.css';
 
 const AppHeader = () => {
   return (

@@ -1,13 +1,14 @@
-import styles from './burger-ingredients.module.css';
 import { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import {
-  ingredientPropType,
-  ingredientConfigPropType,
-} from '../../utils/prop-types';
 
 import BurgerIngredientsTabs from '../burger-ingredients-tabs/burger-ingredients-tabs';
 import BurgerIngredientsTypesList from '../burger-ingredients-types-list/burger-ingredients-types-list';
+
+import {
+  ingredientConfigPropType,
+} from '../../utils/prop-types';
+
+import styles from './burger-ingredients.module.css';
 
 const BurgerIngredients = ({ config, openModal }) => {
   const [currentTab, setCurrentTab] = useState('Булки');
@@ -44,7 +45,6 @@ const BurgerIngredients = ({ config, openModal }) => {
 };
 
 BurgerIngredients.propType = {
-  data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
   config: ingredientConfigPropType.isRequired,
   openModal: PropTypes.func.isRequired,
 };

@@ -1,10 +1,13 @@
-import styles from './burger-ingredients-type.module.css';
-import BurgerIngredientsCardsList from '../burger-ingredients-cards-list/burger-ingredients-cards-list';
-import { forwardRef, useContext } from 'react';
+import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
+
+import BurgerIngredientsCardsList from '../burger-ingredients-cards-list/burger-ingredients-cards-list';
+
 import {
   ingredientConfigPropType,
 } from '../../utils/prop-types';
+
+import styles from './burger-ingredients-type.module.css';
 
 const BurgerIngredientsType = forwardRef(({ type, config, openModal }, ref) => {
   return (

@@ -1,11 +1,15 @@
-import styles from './burger-constructor.module.css';
-import PropTypes from 'prop-types';
+import { useContext } from 'react';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
+import PropTypes from 'prop-types';
+
+import { BurgerConstructorContext } from '../../services/contexts/burger-constructor-context';
+
 import BurgerConstructorToppingsList from '../burger-constructor-toppings-list/burger-constructor-toppings-list';
 import BurgerConstructorOrderSubmit from '../burger-constructor-order-submit/burger-constructor-order-submit';
-import { useContext } from 'react';
+
 import { createOrder } from '../../utils/api';
-import { BurgerConstructorContext } from '../../services/contexts/burger-constructor-context';
+
+import styles from './burger-constructor.module.css';
 
 const BurgerConstructor = ({ openModal, setOrderDetails }) => {
   const { cart, cartDispatch } = useContext(BurgerConstructorContext);
@@ -80,7 +84,8 @@ const BurgerConstructor = ({ openModal, setOrderDetails }) => {
 };
 
 BurgerConstructor.propType = {
-  handleCreateOrder: PropTypes.func.isRequired,
+  openModal: PropTypes.func.isRequired,
+  setOrderDetails: PropTypes.func.isRequired,
 };
 
 export default BurgerConstructor;

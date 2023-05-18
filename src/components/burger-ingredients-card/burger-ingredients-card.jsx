@@ -1,14 +1,16 @@
+import { useContext } from 'react';
 import {
   CurrencyIcon,
   Counter,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import styles from './burger-ingredients-card.module.css';
+
 import { ingredientPropType } from '../../utils/prop-types';
-import PropTypes from 'prop-types';
-import { useContext } from 'react';
+
 import { BurgerConstructorContext } from '../../services/contexts/burger-constructor-context';
 
-const BurgerIngredientsCard = ({ item, openModal }) => {
+import styles from './burger-ingredients-card.module.css';
+
+const BurgerIngredientsCard = ({ item }) => {
   const { cart, cartDispatch } = useContext(BurgerConstructorContext);
 
   const findIngredientInCart = (cart, ingredient) => {
@@ -53,7 +55,6 @@ const BurgerIngredientsCard = ({ item, openModal }) => {
 
 BurgerIngredientsCard.propTypes = {
   item: ingredientPropType.isRequired,
-  openModal: PropTypes.func.isRequired,
 };
 
 export default BurgerIngredientsCard;

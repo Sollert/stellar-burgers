@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import styles from './order-details.module.css';
 
 const OrderDetails = ({ number }) => {
@@ -16,6 +18,10 @@ const OrderDetails = ({ number }) => {
       </p>
     </div>
   );
+};
+
+OrderDetails.propTypes = {
+  number: PropTypes.number.isRequired,
 };
 
 export default OrderDetails;

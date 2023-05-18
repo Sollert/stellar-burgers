@@ -1,10 +1,12 @@
+import { useContext } from 'react';
 import {
   ConstructorElement,
   DragIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import styles from './burger-constructor-toppings-list.module.css';
-import { useContext } from 'react';
+
 import { BurgerConstructorContext } from '../../services/contexts/burger-constructor-context';
+
+import styles from './burger-constructor-toppings-list.module.css';
 
 export const BurgerConstructorToppingsList = () => {
   const { cart, cartDispatch } = useContext(BurgerConstructorContext);

@@ -1,7 +1,9 @@
-import BurgerIngredientsCard from '../burger-ingredients-card/burger-ingredients-card';
-import PropTypes from 'prop-types';
 import { useContext } from 'react';
+import PropTypes from 'prop-types';
+
 import { BurgerIngredientsContext } from '../../services/contexts/burger-ingredients-context';
+
+import BurgerIngredientsCard from '../burger-ingredients-card/burger-ingredients-card';
 
 export const BurgerIngredientsCardsList = ({ type, openModal }) => {
   const { ingredientsData } = useContext(BurgerIngredientsContext)
