@@ -3,7 +3,6 @@ import BurgerIngredientsCardsList from '../burger-ingredients-cards-list/burger-
 import { forwardRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 import {
-  ingredientPropType,
   ingredientConfigPropType,
 } from '../../utils/prop-types';
 

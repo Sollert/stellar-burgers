@@ -4,10 +4,23 @@ import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-comp
 import BurgerConstructorToppingsList from '../burger-constructor-toppings-list/burger-constructor-toppings-list';
 import BurgerConstructorOrderSubmit from '../burger-constructor-order-submit/burger-constructor-order-submit';
 import { useContext } from 'react';
+import { createOrder } from '../../utils/api';
 import { BurgerConstructorContext } from '../../services/contexts/burger-constructor-context';
 
-const BurgerConstructor = ({ handleCreateOrder }) => {
+const BurgerConstructor = ({ openModal, setOrderDetails }) => {
   const { cart, cartDispatch } = useContext(BurgerConstructorContext);
+
+  const resetCart = () => {
+    cartDispatch({ type: 'RESET_CART' });
+  };
+
+  const handleCreateOrder = () => {
+    createOrder(cart.ids)
+      .then(setOrderDetails)
+      .then(openModal)
+      .then(resetCart)
+      .catch((error) => console.log(error));
+  };
 
   return (
     <section className={styles.section__container}>
@@ -57,7 +70,10 @@ const BurgerConstructor = ({ handleCreateOrder }) => {
         </li>
       </ul>
       {cart['bun'] ? (
-        <BurgerConstructorOrderSubmit totalPrice={cart.totalPrice} />
+        <BurgerConstructorOrderSubmit
+          totalPrice={cart.totalPrice}
+          handleCreateOrder={handleCreateOrder}
+        />
       ) : null}
     </section>
   );

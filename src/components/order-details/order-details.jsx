@@ -1,10 +1,10 @@
 import styles from './order-details.module.css';
 
-const OrderDetails = () => {
+const OrderDetails = ({ number }) => {
   return (
     <div className={`${styles.order__container} mb-30 mt-30`}>
       <span className="text text_type_main-mediumtext text_type_digits-large mb-8">
-        034536
+        {number}
       </span>
       <p className="text text_type_main-medium mb-15">Идентификатор заказа</p>
       <div className={styles.order__doneImage}></div>

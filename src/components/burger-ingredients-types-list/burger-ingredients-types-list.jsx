@@ -2,13 +2,11 @@ import styles from './burger-ingredients-types-list.module.css';
 import BurgerIngredientsType from '../burger-ingredients-type/burger-ingredients-type';
 import PropTypes from 'prop-types';
 import {
-  ingredientPropType,
   ingredientConfigPropType,
   refsPropType,
 } from '../../utils/prop-types';
 
 const BurgerIngredientsTypesList = ({
-  data,
   config,
   bunRef,
   sauceRef,

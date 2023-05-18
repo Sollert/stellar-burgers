@@ -3,13 +3,8 @@ import {
   DragIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-constructor-toppings-list.module.css';
-import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { BurgerConstructorContext } from '../../services/contexts/burger-constructor-context';
-import {
-  cartReducer,
-  inititalCartState,
-} from '../../services/reducers/burger-cart-reducer';
 
 export const BurgerConstructorToppingsList = () => {
   const { cart, cartDispatch } = useContext(BurgerConstructorContext);

@@ -5,7 +5,7 @@ import {
 import styles from './burger-ingredients-card.module.css';
 import { ingredientPropType } from '../../utils/prop-types';
 import PropTypes from 'prop-types';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { BurgerConstructorContext } from '../../services/contexts/burger-constructor-context';
 
 const BurgerIngredientsCard = ({ item, openModal }) => {

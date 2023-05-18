@@ -30,6 +30,7 @@ function App() {
     visible: false,
   });
   const [ingredient, setIngredient] = useState({});
+  const [orderDetails, setOrderDetails] = useState();
 
   useEffect(() => {
     const getIngredients = async () => {
@@ -57,7 +58,7 @@ function App() {
     setmodalIngredientState({ visible: false });
   };
 
-  const handleCreateOrder = () => {
+  const handleOpenOrderModal = () => {
     setModalOrderState({ visible: true });
   };
 
@@ -74,12 +75,12 @@ function App() {
               openModal={handleOpenModalIngredient}
             />
           </BurgerIngredientsContext.Provider>
-          <BurgerConstructor handleCreateOrder={handleCreateOrder} />
+          <BurgerConstructor openModal={handleOpenOrderModal} setOrderDetails={setOrderDetails}/>
         </BurgerConstructorContext.Provider>
       </main>
       {modalOrderState.visible && (
         <Modal closeModal={handleCloseModalOrder}>
-          <OrderDetails />
+          <OrderDetails number={orderDetails['order'].number}/>
         </Modal>
       )}
       {modalIngredientState.visible && (

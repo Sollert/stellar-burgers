@@ -26,6 +26,14 @@ export const cartReducer = (state, action) => {
         ids: [...state.ids, action.item._id],
         totalPrice: state.totalPrice + action.item.price,
       };
+    case 'RESET_CART':
+      return {
+        ...state,
+        bun: null,
+        toppings: [],
+        ids: [],
+        totalPrice: 0,
+      };
     default:
       throw new Error(`Wrong type of action: ${action.type}`);
   }
