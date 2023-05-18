@@ -9,7 +9,7 @@ import {
 import BurgerIngredientsTabs from '../burger-ingredients-tabs/burger-ingredients-tabs';
 import BurgerIngredientsTypesList from '../burger-ingredients-types-list/burger-ingredients-types-list';
 
-const BurgerIngredients = ({ data, config, openModal }) => {
+const BurgerIngredients = ({ config, openModal }) => {
   const [currentTab, setCurrentTab] = useState('Булки');
 
   const bunRef = useRef();
@@ -33,7 +33,6 @@ const BurgerIngredients = ({ data, config, openModal }) => {
       <h2 className={'text text_type_main-large mb-5'}>Соберите бургер</h2>
       <BurgerIngredientsTabs current={currentTab} setCurrent={setCurrentType} />
       <BurgerIngredientsTypesList
-        data={data}
         config={config}
         bunRef={bunRef}
         sauceRef={sauceRef}

@@ -1,13 +1,13 @@
 import styles from './burger-ingredients-type.module.css';
 import BurgerIngredientsCardsList from '../burger-ingredients-cards-list/burger-ingredients-cards-list';
-import { forwardRef } from 'react';
+import { forwardRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 import {
   ingredientPropType,
   ingredientConfigPropType,
 } from '../../utils/prop-types';
 
-const BurgerIngredientsType = forwardRef(({ data, type, config, openModal }, ref) => {
+const BurgerIngredientsType = forwardRef(({ type, config, openModal }, ref) => {
   return (
     <li>
       <h3
@@ -17,14 +17,13 @@ const BurgerIngredientsType = forwardRef(({ data, type, config, openModal }, ref
         {config[type].title}
       </h3>
       <ul className={styles.type__list}>
-        <BurgerIngredientsCardsList data={data} type={type} openModal={openModal} />
+        <BurgerIngredientsCardsList type={type} openModal={openModal} />
       </ul>
     </li>
   );
 });
 
 BurgerIngredientsType.propTypes = {
-  data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
   config: ingredientConfigPropType.isRequired,
   type: PropTypes.string.isRequired,
   openModal: PropTypes.func.isRequired,

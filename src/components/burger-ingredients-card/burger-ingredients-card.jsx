@@ -5,16 +5,42 @@ import {
 import styles from './burger-ingredients-card.module.css';
 import { ingredientPropType } from '../../utils/prop-types';
 import PropTypes from 'prop-types';
+import { useContext, useEffect } from 'react';
+import { BurgerConstructorContext } from '../../services/contexts/burger-constructor-context';
 
 const BurgerIngredientsCard = ({ item, openModal }) => {
+  const { cart, cartDispatch } = useContext(BurgerConstructorContext);
+
+  const findIngredientInCart = (cart, ingredient) => {
+    if (isIngredientInCart(cart, item)) {
+      return cart['ids'].filter((cartItem) => {
+        return ingredient._id === cartItem;
+      });
+    }
+    return null;
+  };
+
+  const isIngredientInCart = (cart, ingredient) => {
+    return cart['ids'].find((cartItem) => {
+      return ingredient._id === cartItem;
+    });
+  };
+
   return (
     <li
       className={styles.card}
       onClick={() => {
-        openModal(item);
+        item.type === 'bun'
+          ? cartDispatch({ type: 'ADD_BUN', item: item })
+          : cartDispatch({ type: 'ADD_TOPPING', item: item });
       }}
     >
-      <Counter count={1} size="default" />
+      {findIngredientInCart(cart, item) && (
+        <Counter
+          count={findIngredientInCart(cart, item).length}
+          size="default"
+        />
+      )}
       <img className={'mb-2'} src={item.image} alt={item.name} />
       <p className={styles.card__priceContainer}>
         <span className={'text_type_digits-default'}>{item.price}</span>

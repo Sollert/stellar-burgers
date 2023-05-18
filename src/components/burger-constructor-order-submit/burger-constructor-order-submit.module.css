@@ -1,8 +1,7 @@
 .submit__container {
 	display: flex;
 	gap: 41px;
-	align-self: flex-start;
-	justify-self: flex-end;
+	justify-content: flex-end;
 }
 
 .price__container {
