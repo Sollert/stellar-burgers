@@ -1,101 +1,79 @@
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { BurgerIngredientsContext } from '../../services/contexts/burger-ingredients-context';
-import { BurgerConstructorContext } from '../../services/contexts/burger-constructor-context';
+import { getIngredients } from '../../services/store/ingredients/ingredients.actions'
+import { burgerIngredientsConfig } from '../../utils/config'
 
-import {
-  inititalCartState,
-  cartReducer,
-} from '../../services/reducers/burger-cart-reducer';
+import AppHeader from '../app-header/app-header'
+import BurgerIngredients from '../burger-ingredients/burger-ingredients'
+import BurgerConstructor from '../burger-constructor/burger-constructor'
+import Modal from '../modal/modal'
+import OrderDetails from '../order-details/order-details'
+import IngredientDetails from '../ingredient-details/ingredient-details'
 
-import AppHeader from '../app-header/app-header';
-import BurgerIngredients from '../burger-ingredients/burger-ingredients';
-import BurgerConstructor from '../burger-constructor/burger-constructor';
-import Modal from '../modal/modal';
-import OrderDetails from '../order-details/order-details';
-import IngredientDetails from '../ingredient-details/ingredient-details';
-
-import { getIngredientsData } from '../../utils/api';
-import { burgerIngredientsConfig } from '../../utils/config';
-
-import styles from './app.module.css';
+import styles from './app.module.css'
 
 function App() {
-  const [cart, cartDispatch] = useReducer(cartReducer, inititalCartState);
-  const [ingredientsData, setIngredientsData] = useState([]);
-  const [modalOrderState, setModalOrderState] = useState({
-    visible: false,
-  });
-  const [modalIngredientState, setmodalIngredientState] = useState({
-    visible: false,
-  });
-  const [ingredient, setIngredient] = useState({});
-  const [orderDetails, setOrderDetails] = useState();
+	const dispatch = useDispatch()
 
-  useEffect(() => {
-    const getIngredients = async () => {
-      try {
-        const res = await getIngredientsData();
-        setIngredientsData(res.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
+	const [modalOrderState, setModalOrderState] = useState({
+		visible: false,
+	})
+	const [modalIngredientState, setModalIngredientState] = useState({
+		visible: false,
+	})
+	const [ingredient, setIngredient] = useState({})
+	const [orderDetails, setOrderDetails] = useState()
 
-    getIngredients();
-  }, []);
+	useEffect(() => {
+		dispatch(getIngredients())
+	}, [dispatch])
 
-  const handleCloseModalOrder = () => {
-    setModalOrderState({ visible: false });
-  };
+	const handleCloseModalOrder = () => {
+		setModalOrderState({ visible: false })
+	}
 
-  const handleOpenModalIngredient = (data) => {
-    setIngredient(data);
-    setmodalIngredientState({ visible: true });
-  };
+	const handleOpenModalIngredient = data => {
+		setIngredient(data)
+		setModalIngredientState({ visible: true })
+	}
 
-  const handleCloseModalIngredient = () => {
-    setmodalIngredientState({ visible: false });
-  };
+	const handleCloseModalIngredient = () => {
+		setModalIngredientState({ visible: false })
+	}
 
-  const handleOpenOrderModal = () => {
-    setModalOrderState({ visible: true });
-  };
+	const handleOpenOrderModal = () => {
+		setModalOrderState({ visible: true })
+	}
 
-  return (
-    <>
-      <AppHeader />
-      <main className={styles.main}>
-        <BurgerConstructorContext.Provider value={{ cart, cartDispatch }}>
-          <BurgerIngredientsContext.Provider
-            value={{ ingredientsData, setIngredientsData }}
-          >
-            <BurgerIngredients
-              config={burgerIngredientsConfig}
-              openModal={handleOpenModalIngredient}
-            />
-          </BurgerIngredientsContext.Provider>
-          <BurgerConstructor
-            openModal={handleOpenOrderModal}
-            setOrderDetails={setOrderDetails}
-          />
-        </BurgerConstructorContext.Provider>
-      </main>
-      {modalOrderState.visible && (
-        <Modal closeModal={handleCloseModalOrder}>
-          <OrderDetails number={orderDetails['order'].number} />
-        </Modal>
-      )}
-      {modalIngredientState.visible && (
-        <Modal
-          closeModal={handleCloseModalIngredient}
-          title={'Детали ингредиента'}
-        >
-          <IngredientDetails ingredient={ingredient} />
-        </Modal>
-      )}
-    </>
-  );
+	return (
+		<>
+			<AppHeader />
+			<main className={styles.main}>
+				<BurgerIngredients
+					config={burgerIngredientsConfig}
+					openModal={handleOpenModalIngredient}
+				/>
+				<BurgerConstructor
+					openModal={handleOpenOrderModal}
+					setOrderDetails={setOrderDetails}
+				/>
+			</main>
+			{modalOrderState.visible && (
+				<Modal closeModal={handleCloseModalOrder}>
+					<OrderDetails number={orderDetails['order'].number} />
+				</Modal>
+			)}
+			{modalIngredientState.visible && (
+				<Modal
+					closeModal={handleCloseModalIngredient}
+					title={'Детали ингредиента'}
+				>
+					<IngredientDetails ingredient={ingredient} />
+				</Modal>
+			)}
+		</>
+	)
 }
 
-export default App;
+export default App
