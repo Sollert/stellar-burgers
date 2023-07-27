@@ -16,7 +16,7 @@ const BurgerConstructor = ({ openModal, setOrderDetails }) => {
 	const dispatch = useDispatch()
 
 	const handleCreateOrder = () => {
-		createOrder(cart.ids)
+		createOrder([cart.bun._id, ...cart.toppings.map(item => item._id)])
 			.then(setOrderDetails)
 			.then(openModal)
 			.then(dispatch(actions.resetCart()))
