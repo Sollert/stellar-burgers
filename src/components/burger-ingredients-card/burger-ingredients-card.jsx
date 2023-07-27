@@ -14,18 +14,19 @@ const BurgerIngredientsCard = ({ item }) => {
 	const dispatch = useDispatch()
 
 	const findIngredientInCart = (cart, ingredient) => {
-		if (isIngredientInCart(cart, item)) {
-			return cart['ids'].filter(cartItem => {
-				return ingredient._id === cartItem
-			})
+		if (ingredient.type === 'bun') {
+			return '1'
+		} else {
+			return cart['toppings'].filter(item => ingredient._id === item._id)
 		}
-		return null
 	}
 
 	const isIngredientInCart = (cart, ingredient) => {
-		return cart['ids'].find(cartItem => {
-			return ingredient._id === cartItem
-		})
+		if (ingredient.type === 'bun') {
+			return cart['bun']?._id === ingredient._id
+		} else {
+			return cart['toppings'].find(item => ingredient._id === item._id)
+		}
 	}
 
 	return (
@@ -37,7 +38,7 @@ const BurgerIngredientsCard = ({ item }) => {
 					: dispatch(actions.addTopping(item))
 			}}
 		>
-			{findIngredientInCart(cart, item) && (
+			{isIngredientInCart(cart, item) && (
 				<Counter
 					count={findIngredientInCart(cart, item).length}
 					size='default'
