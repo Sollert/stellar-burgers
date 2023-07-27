@@ -20,7 +20,6 @@ BurgerIngredientsTypesList.propTypes = {
 	bunRef: refsPropType.isRequired,
 	sauceRef: refsPropType.isRequired,
 	mainRef: refsPropType.isRequired,
-	openModal: PropTypes.func.isRequired,
 }
 
 export default BurgerIngredientsTypesList

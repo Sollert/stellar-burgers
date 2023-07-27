@@ -1,8 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux'
-import PropTypes from 'prop-types'
-
-import { createOrder } from '../../utils/api'
-import { actions } from '../../services/store/cart/cart.slice'
+import { useSelector } from 'react-redux'
 
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
 
@@ -11,29 +7,20 @@ import BurgerConstructorOrderSubmit from '../burger-constructor-order-submit/bur
 
 import styles from './burger-constructor.module.css'
 
-const BurgerConstructor = ({ openModal, setOrderDetails }) => {
-	const cart = useSelector(store => store.cart)
-	const dispatch = useDispatch()
-
-	const handleCreateOrder = () => {
-		createOrder([cart.bun._id, ...cart.toppings.map(item => item._id)])
-			.then(setOrderDetails)
-			.then(openModal)
-			.then(dispatch(actions.resetCart()))
-			.catch(error => console.log(error))
-	}
+const BurgerConstructor = () => {
+	const bun = useSelector(store => store.cart.bun)
 
 	return (
 		<section className={styles.section__container}>
 			<ul className={`${styles.ingredients__container}`}>
 				<li className={'ml-10'}>
-					{cart['bun'] ? (
+					{bun ? (
 						<ConstructorElement
 							type='top'
 							isLocked={true}
-							text={`${cart['bun']?.name} (верх)`}
-							price={cart['bun']?.price}
-							thumbnail={cart['bun']?.image}
+							text={`${bun?.name} (верх)`}
+							price={bun?.price}
+							thumbnail={bun?.image}
 						/>
 					) : (
 						<div className={`${styles.bun__empty} ${styles.bun__empty_top}`}>
@@ -51,13 +38,13 @@ const BurgerConstructor = ({ openModal, setOrderDetails }) => {
 					</ul>
 				</li>
 				<li className={'ml-10'}>
-					{cart['bun'] ? (
+					{bun ? (
 						<ConstructorElement
 							type='bottom'
 							isLocked={true}
-							text={`${cart['bun']?.name} (низ)`}
-							price={cart['bun']?.price}
-							thumbnail={cart['bun']?.image}
+							text={`${bun?.name} (низ)`}
+							price={bun?.price}
+							thumbnail={bun?.image}
 						/>
 					) : (
 						<div className={`${styles.bun__empty} ${styles.bun__empty_bottom}`}>
@@ -70,19 +57,9 @@ const BurgerConstructor = ({ openModal, setOrderDetails }) => {
 					)}
 				</li>
 			</ul>
-			{cart['bun'] ? (
-				<BurgerConstructorOrderSubmit
-					totalPrice={cart.totalPrice}
-					handleCreateOrder={handleCreateOrder}
-				/>
-			) : null}
+			{bun ? <BurgerConstructorOrderSubmit /> : null}
 		</section>
 	)
-}
-
-BurgerConstructor.propType = {
-	openModal: PropTypes.func.isRequired,
-	setOrderDetails: PropTypes.func.isRequired,
 }
 
 export default BurgerConstructor

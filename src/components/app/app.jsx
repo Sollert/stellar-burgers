@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { actions as ingredientDetailsActions } from '../../services/store/ingredientDetails/ingredientDetails.slice.js'
+import { actions as orderDetailsActions } from '../../services/store/orderDetails/orderDetails.slice.js'
 
 import { getIngredients } from '../../services/store/ingredients/ingredients.actions'
 import { burgerIngredientsConfig } from '../../utils/config'
@@ -20,37 +21,22 @@ function App() {
 	const modalIngredientState = useSelector(
 		store => store.ingredientDetails.modalVisible
 	)
-
-	const [modalOrderState, setModalOrderState] = useState({
-		visible: false,
-	})
-	const [orderDetails, setOrderDetails] = useState()
+	const modalOrderState = useSelector(store => store.orderDetails.modalVisible)
 
 	useEffect(() => {
 		dispatch(getIngredients())
 	}, [dispatch])
-
-	const handleCloseModalOrder = () => {
-		setModalOrderState({ visible: false })
-	}
-
-	const handleOpenOrderModal = () => {
-		setModalOrderState({ visible: true })
-	}
 
 	return (
 		<>
 			<AppHeader />
 			<main className={styles.main}>
 				<BurgerIngredients config={burgerIngredientsConfig} />
-				<BurgerConstructor
-					openModal={handleOpenOrderModal}
-					setOrderDetails={setOrderDetails}
-				/>
+				<BurgerConstructor />
 			</main>
-			{modalOrderState.visible && (
-				<Modal closeModal={handleCloseModalOrder}>
-					<OrderDetails number={orderDetails['order'].number} />
+			{modalOrderState && (
+				<Modal closeModal={() => dispatch(orderDetailsActions.closeModal())}>
+					<OrderDetails />
 				</Modal>
 			)}
 			{modalIngredientState && (

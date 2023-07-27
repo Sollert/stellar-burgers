@@ -4,11 +4,11 @@ import {
 	Counter,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 
+import { actions as ingredientDetailsActions } from '../../services/store/ingredientDetails/ingredientDetails.slice.js'
+
 import { ingredientPropType } from '../../utils/prop-types'
 
 import styles from './burger-ingredients-card.module.css'
-import { actions as cartActions } from '../../services/store/cart/cart.slice'
-import { actions as ingredientDetailsActions } from '../../services/store/ingredientDetails/ingredientDetails.slice.js'
 
 const BurgerIngredientsCard = ({ item }) => {
 	const cart = useSelector(store => store.cart)

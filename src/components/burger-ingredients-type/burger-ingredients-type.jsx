@@ -26,7 +26,6 @@ const BurgerIngredientsType = forwardRef(({ type, config }, ref) => {
 BurgerIngredientsType.propTypes = {
 	config: ingredientConfigPropType.isRequired,
 	type: PropTypes.string.isRequired,
-	openModal: PropTypes.func.isRequired,
 }
 
 export default BurgerIngredientsType

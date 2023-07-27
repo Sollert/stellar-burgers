@@ -9,7 +9,6 @@ const ingredientDetailsSlice = createSlice({
 	reducers: {
 		openModal: {
 			reducer: (state, action) => {
-				console.log(action)
 				return {
 					...state,
 					ingredient: action.payload,
