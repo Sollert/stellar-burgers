@@ -7,7 +7,8 @@ import {
 import { ingredientPropType } from '../../utils/prop-types'
 
 import styles from './burger-ingredients-card.module.css'
-import { actions } from '../../services/store/cart/cart.slice'
+import { actions as cartActions } from '../../services/store/cart/cart.slice'
+import { actions as ingredientDetailsActions } from '../../services/store/ingredientDetails/ingredientDetails.slice.js'
 
 const BurgerIngredientsCard = ({ item }) => {
 	const cart = useSelector(store => store.cart)
@@ -15,7 +16,7 @@ const BurgerIngredientsCard = ({ item }) => {
 
 	const findIngredientInCart = (cart, ingredient) => {
 		if (ingredient.type === 'bun') {
-			return '1'
+			return [ingredient]
 		} else {
 			return cart['toppings'].filter(item => ingredient._id === item._id)
 		}
@@ -33,9 +34,7 @@ const BurgerIngredientsCard = ({ item }) => {
 		<li
 			className={styles.card}
 			onClick={() => {
-				item.type === 'bun'
-					? dispatch(actions.addBun(item))
-					: dispatch(actions.addTopping(item))
+				dispatch(ingredientDetailsActions.openModal(item))
 			}}
 		>
 			{isIngredientInCart(cart, item) && (

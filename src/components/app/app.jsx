@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { actions as ingredientDetailsActions } from '../../services/store/ingredientDetails/ingredientDetails.slice.js'
+
 import { getIngredients } from '../../services/store/ingredients/ingredients.actions'
 import { burgerIngredientsConfig } from '../../utils/config'
 
@@ -15,14 +17,13 @@ import styles from './app.module.css'
 
 function App() {
 	const dispatch = useDispatch()
+	const modalIngredientState = useSelector(
+		store => store.ingredientDetails.modalVisible
+	)
 
 	const [modalOrderState, setModalOrderState] = useState({
 		visible: false,
 	})
-	const [modalIngredientState, setModalIngredientState] = useState({
-		visible: false,
-	})
-	const [ingredient, setIngredient] = useState({})
 	const [orderDetails, setOrderDetails] = useState()
 
 	useEffect(() => {
@@ -33,15 +34,6 @@ function App() {
 		setModalOrderState({ visible: false })
 	}
 
-	const handleOpenModalIngredient = data => {
-		setIngredient(data)
-		setModalIngredientState({ visible: true })
-	}
-
-	const handleCloseModalIngredient = () => {
-		setModalIngredientState({ visible: false })
-	}
-
 	const handleOpenOrderModal = () => {
 		setModalOrderState({ visible: true })
 	}
@@ -50,10 +42,7 @@ function App() {
 		<>
 			<AppHeader />
 			<main className={styles.main}>
-				<BurgerIngredients
-					config={burgerIngredientsConfig}
-					openModal={handleOpenModalIngredient}
-				/>
+				<BurgerIngredients config={burgerIngredientsConfig} />
 				<BurgerConstructor
 					openModal={handleOpenOrderModal}
 					setOrderDetails={setOrderDetails}
@@ -64,12 +53,12 @@ function App() {
 					<OrderDetails number={orderDetails['order'].number} />
 				</Modal>
 			)}
-			{modalIngredientState.visible && (
+			{modalIngredientState && (
 				<Modal
-					closeModal={handleCloseModalIngredient}
+					closeModal={() => dispatch(ingredientDetailsActions.closeModal())}
 					title={'Детали ингредиента'}
 				>
-					<IngredientDetails ingredient={ingredient} />
+					<IngredientDetails />
 				</Modal>
 			)}
 		</>
