@@ -11,9 +11,22 @@ import styles from './burger-ingredients.module.css'
 const BurgerIngredients = ({ config }) => {
 	const [currentTab, setCurrentTab] = useState('Булки')
 
+	const scrollContainerRef = useRef()
 	const bunRef = useRef()
 	const sauceRef = useRef()
 	const mainRef = useRef()
+
+	const onScrollHandler = () => {
+		const currentScroll = scrollContainerRef.current.scrollTop
+		const bunTitlePos = Math.abs(bunRef.current.offsetTop - currentScroll)
+		const sauceTitlePos = Math.abs(sauceRef.current.offsetTop - currentScroll)
+		const mainTitlePos = Math.abs(mainRef.current.offsetTop - currentScroll)
+
+		if (bunTitlePos < sauceTitlePos) setCurrentTab('Булки')
+		if (sauceTitlePos < bunTitlePos && sauceTitlePos < mainTitlePos)
+			setCurrentTab('Соусы')
+		if (mainTitlePos < sauceTitlePos) setCurrentTab('Начинки')
+	}
 
 	const setCurrentType = evt => {
 		setCurrentTab(evt)
@@ -33,9 +46,11 @@ const BurgerIngredients = ({ config }) => {
 			<BurgerIngredientsTabs current={currentTab} setCurrent={setCurrentType} />
 			<BurgerIngredientsTypesList
 				config={config}
+				scrollContainerRef={scrollContainerRef}
 				bunRef={bunRef}
 				sauceRef={sauceRef}
 				mainRef={mainRef}
+				onScrollHandler={onScrollHandler}
 			/>
 		</section>
 	)
