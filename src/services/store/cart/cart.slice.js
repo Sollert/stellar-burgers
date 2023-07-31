@@ -13,15 +13,10 @@ const cartSlice = createSlice({
 	reducers: {
 		addBun: {
 			reducer: (state, action) => {
-				return {
-					...state,
-					bun: action.payload,
-					totalPrice: state.bun
-						? state.totalPrice -
-						  state['bun'].price * 2 +
-						  action.payload.price * 2
-						: state.totalPrice + action.payload.price * 2,
-				}
+				state.totalPrice = state.bun
+					? state.totalPrice - state.bun.price * 2 + action.payload.price * 2
+					: state.totalPrice + action.payload.price * 2
+				state.bun = action.payload
 			},
 			prepare: value => {
 				return { payload: { ...value, uid: uuidv4() } }
@@ -29,11 +24,8 @@ const cartSlice = createSlice({
 		},
 		addTopping: {
 			reducer: (state, action) => {
-				return {
-					...state,
-					toppings: [...state.toppings, action.payload],
-					totalPrice: state.totalPrice + action.payload.price,
-				}
+				state.totalPrice = state.totalPrice + action.payload.price
+				state.toppings = [...state.toppings, action.payload]
 			},
 			prepare: value => {
 				return { payload: { ...value, uid: uuidv4() } }
@@ -41,29 +33,26 @@ const cartSlice = createSlice({
 		},
 		resetCart: {
 			reducer: (state, action) => {
-				return {
-					...state,
-					bun: null,
-					toppings: [],
-					totalPrice: 0,
-				}
+				state.bun = null
+				state.toppings = []
+				state.totalPrice = 0
+			},
+		},
+		sortIngredients: {
+			reducer: (state, action) => {
+				state.toppings = action.payload
 			},
 		},
 		deleteIngredient: {
 			reducer: (state, action) => {
 				if (action.payload.type === 'bun') {
-					return {
-						...state,
-						bun: null,
-					}
+					state.totalPrice = state.totalPrice - action.payload.price
+					state.bun = null
 				} else {
-					return {
-						...state,
-						toppings: state.toppings.filter(
-							item => item.uid !== action.payload.uid
-						),
-						totalPrice: state.totalPrice - action.payload.price,
-					}
+					state.toppings = state.toppings.filter(
+						item => item.uid !== action.payload.uid
+					)
+					state.totalPrice = state.totalPrice - action.payload.price
 				}
 			},
 		},

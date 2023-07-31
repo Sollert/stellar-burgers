@@ -12,11 +12,8 @@ const orderDetailsSlice = createSlice({
 	reducers: {
 		closeModal: {
 			reducer: state => {
-				return {
-					...state,
-					modalVisible: false,
-					order: {},
-				}
+				state.modalVisible = false
+				state.order = {}
 			},
 		},
 	},

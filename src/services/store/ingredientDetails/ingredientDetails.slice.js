@@ -9,20 +9,14 @@ const ingredientDetailsSlice = createSlice({
 	reducers: {
 		openModal: {
 			reducer: (state, action) => {
-				return {
-					...state,
-					ingredient: action.payload,
-					modalVisible: true,
-				}
+				state.ingredient = action.payload
+				state.modalVisible = true
 			},
 		},
 		closeModal: {
 			reducer: (state, action) => {
-				return {
-					...state,
-					ingredient: {},
-					modalVisible: false,
-				}
+				state.ingredient = {}
+				state.modalVisible = false
 			},
 		},
 	},
