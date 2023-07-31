@@ -1,4 +1,7 @@
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { useDrop } from 'react-dnd'
+
+import { actions as cartActions } from '../../services/store/cart/cart.slice.js'
 
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
 
@@ -8,10 +11,21 @@ import BurgerConstructorOrderSubmit from '../burger-constructor-order-submit/bur
 import styles from './burger-constructor.module.css'
 
 const BurgerConstructor = () => {
+	const dispatch = useDispatch()
 	const bun = useSelector(store => store.cart.bun)
+	const [, dropTargetRef] = useDrop({
+		accept: 'ingredient',
+		drop(item) {
+			if (item.type === 'bun') {
+				dispatch(cartActions.addBun(item))
+			} else {
+				dispatch(cartActions.addTopping(item))
+			}
+		},
+	})
 
 	return (
-		<section className={styles.section__container}>
+		<section className={styles.section__container} ref={dropTargetRef}>
 			<ul className={`${styles.ingredients__container}`}>
 				<li className={'ml-10'}>
 					{bun ? (

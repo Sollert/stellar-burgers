@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux'
+import { useDrag } from 'react-dnd'
 import {
 	CurrencyIcon,
 	Counter,
@@ -13,6 +14,13 @@ import styles from './burger-ingredients-card.module.css'
 const BurgerIngredientsCard = ({ item }) => {
 	const cart = useSelector(store => store.cart)
 	const dispatch = useDispatch()
+	const [, dragRef] = useDrag(
+		{
+			type: 'ingredient',
+			item: item,
+		},
+		[item]
+	)
 
 	const findIngredientInCart = (cart, ingredient) => {
 		if (ingredient.type === 'bun') {
@@ -36,6 +44,7 @@ const BurgerIngredientsCard = ({ item }) => {
 			onClick={() => {
 				dispatch(ingredientDetailsActions.openModal(item))
 			}}
+			ref={dragRef}
 		>
 			{isIngredientInCart(cart, item) && (
 				<Counter

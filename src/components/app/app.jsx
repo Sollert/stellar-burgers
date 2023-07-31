@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 import { actions as ingredientDetailsActions } from '../../services/store/ingredientDetails/ingredientDetails.slice.js'
 import { actions as orderDetailsActions } from '../../services/store/orderDetails/orderDetails.slice.js'
@@ -30,10 +32,12 @@ function App() {
 	return (
 		<>
 			<AppHeader />
-			<main className={styles.main}>
-				<BurgerIngredients config={burgerIngredientsConfig} />
-				<BurgerConstructor />
-			</main>
+			<DndProvider backend={HTML5Backend}>
+				<main className={styles.main}>
+					<BurgerIngredients config={burgerIngredientsConfig} />
+					<BurgerConstructor />
+				</main>
+			</DndProvider>
 			{modalOrderState && (
 				<Modal closeModal={() => dispatch(orderDetailsActions.closeModal())}>
 					<OrderDetails />
