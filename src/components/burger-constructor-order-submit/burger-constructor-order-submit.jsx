@@ -14,10 +14,10 @@ import styles from './burger-constructor-order-submit.module.css'
 const BurgerConstructorOrderSubmit = () => {
 	const dispatch = useDispatch()
 	const totalPrice = useSelector(store => store.cart.totalPrice)
-	const ids = useSelector(store => [
-		store.cart.bun?._id,
-		...store.cart.toppings.map(item => item._id),
-	])
+	const bun = useSelector(store => store.cart.bun)
+	const toppings = useSelector(store => store.cart.toppings)
+
+	const ids = [bun?._id, ...toppings.map(item => item._id)]
 
 	const handleCreateOrder = () => {
 		dispatch(createOrder(ids))
