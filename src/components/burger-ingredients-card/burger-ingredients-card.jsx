@@ -1,60 +1,69 @@
-import { useContext } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+import { useDrag } from 'react-dnd'
 import {
-  CurrencyIcon,
-  Counter,
-} from '@ya.praktikum/react-developer-burger-ui-components';
+	CurrencyIcon,
+	Counter,
+} from '@ya.praktikum/react-developer-burger-ui-components'
 
-import { ingredientPropType } from '../../utils/prop-types';
+import { actions as ingredientDetailsActions } from '../../services/store/ingredientDetails/ingredientDetails.slice.js'
 
-import { BurgerConstructorContext } from '../../services/contexts/burger-constructor-context';
+import { ingredientPropType } from '../../utils/prop-types'
 
-import styles from './burger-ingredients-card.module.css';
+import styles from './burger-ingredients-card.module.css'
 
 const BurgerIngredientsCard = ({ item }) => {
-  const { cart, cartDispatch } = useContext(BurgerConstructorContext);
+	const cart = useSelector(store => store.cart)
+	const dispatch = useDispatch()
+	const [, dragRef] = useDrag(
+		{
+			type: 'ingredient',
+			item: item,
+		},
+		[item]
+	)
 
-  const findIngredientInCart = (cart, ingredient) => {
-    if (isIngredientInCart(cart, item)) {
-      return cart['ids'].filter((cartItem) => {
-        return ingredient._id === cartItem;
-      });
-    }
-    return null;
-  };
+	const findIngredientInCart = (cart, ingredient) => {
+		if (ingredient.type === 'bun') {
+			return [ingredient]
+		} else {
+			return cart['toppings'].filter(item => ingredient._id === item._id)
+		}
+	}
 
-  const isIngredientInCart = (cart, ingredient) => {
-    return cart['ids'].find((cartItem) => {
-      return ingredient._id === cartItem;
-    });
-  };
+	const isIngredientInCart = (cart, ingredient) => {
+		if (ingredient.type === 'bun') {
+			return cart['bun']?._id === ingredient._id
+		} else {
+			return cart['toppings'].find(item => ingredient._id === item._id)
+		}
+	}
 
-  return (
-    <li
-      className={styles.card}
-      onClick={() => {
-        item.type === 'bun'
-          ? cartDispatch({ type: 'ADD_BUN', item: item })
-          : cartDispatch({ type: 'ADD_TOPPING', item: item });
-      }}
-    >
-      {findIngredientInCart(cart, item) && (
-        <Counter
-          count={findIngredientInCart(cart, item).length}
-          size="default"
-        />
-      )}
-      <img className={'mb-2'} src={item.image} alt={item.name} />
-      <p className={styles.card__priceContainer}>
-        <span className={'text_type_digits-default'}>{item.price}</span>
-        <CurrencyIcon type="primary" />
-      </p>
-      <h4 className={'text text_type_main-default'}>{item.name}</h4>
-    </li>
-  );
-};
+	return (
+		<li
+			className={styles.card}
+			onClick={() => {
+				dispatch(ingredientDetailsActions.openModal(item))
+			}}
+			ref={dragRef}
+		>
+			{isIngredientInCart(cart, item) && (
+				<Counter
+					count={findIngredientInCart(cart, item).length}
+					size='default'
+				/>
+			)}
+			<img className={'mb-2'} src={item.image} alt={item.name} />
+			<p className={styles.card__priceContainer}>
+				<span className={'text_type_digits-default'}>{item.price}</span>
+				<CurrencyIcon type='primary' />
+			</p>
+			<h4 className={'text text_type_main-default'}>{item.name}</h4>
+		</li>
+	)
+}
 
 BurgerIngredientsCard.propTypes = {
-  item: ingredientPropType.isRequired,
-};
+	item: ingredientPropType.isRequired,
+}
 
-export default BurgerIngredientsCard;
+export default BurgerIngredientsCard
