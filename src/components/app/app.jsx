@@ -14,6 +14,11 @@ import Home from '../../pages/home/home.jsx'
 import Ingredient from '../../pages/ingredient/ingredient.jsx'
 import Layout from '../../pages/layout/layout.jsx'
 import NotFound from '../not-found/not-found.jsx'
+import { Login } from '../../pages/login/login.jsx'
+import { Register } from '../../pages/register/register.jsx'
+import ProtectedRoute from '../protected-route/protected-route.jsx'
+import { ForgotPassword } from '../../pages/forgot-password/forgot-password.jsx'
+import { ResetPassword } from '../../pages/reset-password/reset-password.jsx'
 
 function App() {
 	const dispatch = useDispatch()
@@ -46,6 +51,38 @@ function App() {
 					<Route path='/ingredients/:id' element={<Ingredient />} />
 					<Route path='*' element={<NotFound />} />
 				</Route>
+				<Route
+					path='/login'
+					element={
+						<ProtectedRoute anonymous>
+							<Login />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path='/register'
+					element={
+						<ProtectedRoute anonymous>
+							<Register />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path='/forgot-password'
+					element={
+						<ProtectedRoute anonymous>
+							<ForgotPassword />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path='/reset-password'
+					element={
+						<ProtectedRoute anonymous>
+							<ResetPassword />
+						</ProtectedRoute>
+					}
+				/>
 			</Routes>
 			{background && (
 				<Routes>
