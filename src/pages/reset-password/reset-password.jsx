@@ -1,24 +1,32 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 
 import Form from '../../components/form/form'
 import FormInput from '../../components/form-input/form-input'
+import { resetPasswordRequest } from '../../utils/api'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export function ResetPassword() {
+	const navigate = useNavigate()
+	const location = useLocation()
 	const [passwordValue, setPasswordValue] = useState('')
-	const [codeValue, setCodeValue] = useState('')
+	const [tokenValue, setTokenValue] = useState('')
 
 	const body = useMemo(
 		() => ({
-			code: codeValue,
 			password: passwordValue,
+			token: tokenValue,
 		}),
-		[codeValue, passwordValue]
+		[tokenValue, passwordValue]
 	)
 
-	const onSubmitHandler = useCallback(e => {
+	const onSubmitHandler = e => {
 		e.preventDefault()
-		console.log('Пароль сброшен')
-	}, [])
+		resetPasswordRequest(body)
+			.then(() => {
+				navigate('/login', { state: { from: location } })
+			})
+			.catch(err => console.log(err))
+	}
 
 	return (
 		<Form
@@ -42,8 +50,8 @@ export function ResetPassword() {
 				name='code'
 				type={'text'}
 				placeholder='Введите код из письма'
-				value={codeValue}
-				setValue={setCodeValue}
+				value={tokenValue}
+				setValue={setTokenValue}
 			/>
 		</Form>
 	)

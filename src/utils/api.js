@@ -3,6 +3,13 @@ const getIngredientsDataUrl =
 
 const createOrderUrl = 'https://norma.nomoreparties.space/api/orders'
 
+const registerUserUrl = 'https://norma.nomoreparties.space/api/auth/register'
+
+const sendResetTokenUrl = 'https://norma.nomoreparties.space/api/password-reset'
+
+const resetPasswordUrl =
+	'https://norma.nomoreparties.space/api/password-reset/reset'
+
 const checkResponse = res => {
 	return res.ok ? res.json() : Promise.reject(res)
 }
@@ -27,6 +34,42 @@ export const sendOrderRequest = ids => {
 	})
 	return sendRequest(
 		createOrderUrl,
+		'POST',
+		{
+			'Content-Type': 'application/json',
+		},
+		body
+	)
+}
+
+export const registerUserRequest = data => {
+	const body = JSON.stringify(data)
+	return sendRequest(
+		registerUserUrl,
+		'POST',
+		{
+			'Content-Type': 'application/json',
+		},
+		body
+	)
+}
+
+export const sendResetTokenRequest = data => {
+	const body = JSON.stringify(data)
+	return sendRequest(
+		sendResetTokenUrl,
+		'POST',
+		{
+			'Content-Type': 'application/json',
+		},
+		body
+	)
+}
+
+export const resetPasswordRequest = data => {
+	const body = JSON.stringify(data)
+	return sendRequest(
+		resetPasswordUrl,
 		'POST',
 		{
 			'Content-Type': 'application/json',

@@ -2,11 +2,14 @@ import { useCallback, useMemo, useState } from 'react'
 
 import Form from '../../components/form/form'
 import FormInput from '../../components/form-input/form-input'
+import { useDispatch } from 'react-redux'
+import { registerUser } from '../../services/store/user/user.actions'
 
 export function Register() {
 	const [nameValue, setNameValue] = useState('')
 	const [emailValue, setEmailValue] = useState('')
 	const [passwordValue, setPasswordValue] = useState('')
+	const dispatch = useDispatch()
 
 	const body = useMemo(
 		() => ({
@@ -17,10 +20,13 @@ export function Register() {
 		[emailValue, passwordValue, nameValue]
 	)
 
-	const onSubmitHandler = useCallback(e => {
-		e.preventDefault()
-		console.log('register success')
-	}, [])
+	const onSubmitHandler = useCallback(
+		(e, body) => {
+			e.preventDefault()
+			dispatch(registerUser(body))
+		},
+		[dispatch]
+	)
 
 	return (
 		<Form

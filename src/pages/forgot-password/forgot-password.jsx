@@ -3,6 +3,7 @@ import { useMemo, useState } from 'react'
 import Form from '../../components/form/form'
 import FormInput from '../../components/form-input/form-input'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { sendResetTokenRequest } from '../../utils/api'
 
 export function ForgotPassword() {
 	const navigate = useNavigate()
@@ -19,7 +20,11 @@ export function ForgotPassword() {
 
 	const onSubmitHandler = e => {
 		e.preventDefault()
-		navigate('/reset-password', { state: { from: location } })
+		sendResetTokenRequest(body)
+			.then(() => {
+				navigate('/reset-password', { state: { from: location } })
+			})
+			.catch(err => console.log(err))
 	}
 
 	return (
