@@ -5,7 +5,7 @@ import FormInput from '../../components/form-input/form-input'
 import { useDispatch } from 'react-redux'
 import { registerUser } from '../../services/store/user/user.actions'
 
-export function Register() {
+export default function Register() {
 	const [nameValue, setNameValue] = useState('')
 	const [emailValue, setEmailValue] = useState('')
 	const [passwordValue, setPasswordValue] = useState('')

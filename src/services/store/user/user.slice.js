@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import registerUser from './user.actions'
+import { registerUser, loginUser, getUserInfo } from './user.actions'
 
 const userSlice = createSlice({
 	name: 'ingredients',
@@ -24,16 +24,29 @@ const userSlice = createSlice({
 			state.isRequest = false
 			state.isError = true
 		})
-		builder.addCase(registerUser.pending, state => {
+		builder.addCase(loginUser.pending, state => {
 			state.isRequest = true
 			state.isError = false
 		})
-		builder.addCase(registerUser.fulfilled, (state, action) => {
+		builder.addCase(loginUser.fulfilled, (state, action) => {
 			state.isRequest = false
 			state.isAuth = true
 			state.user = action.payload
 		})
-		builder.addCase(registerUser.rejected, state => {
+		builder.addCase(loginUser.rejected, state => {
+			state.isRequest = false
+			state.isError = true
+		})
+		builder.addCase(getUserInfo.pending, state => {
+			state.isRequest = true
+			state.isError = false
+		})
+		builder.addCase(getUserInfo.fulfilled, (state, action) => {
+			state.isRequest = false
+			state.isAuth = true
+			state.user = action.payload
+		})
+		builder.addCase(getUserInfo.rejected, state => {
 			state.isRequest = false
 			state.isError = true
 		})

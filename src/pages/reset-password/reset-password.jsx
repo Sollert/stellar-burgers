@@ -5,7 +5,7 @@ import FormInput from '../../components/form-input/form-input'
 import { resetPasswordRequest } from '../../utils/api'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-export function ResetPassword() {
+export default function ResetPassword() {
 	const navigate = useNavigate()
 	const location = useLocation()
 	const [passwordValue, setPasswordValue] = useState('')

@@ -1,3 +1,5 @@
+import { getCookie } from './cookie'
+
 const getIngredientsDataUrl =
 	'https://norma.nomoreparties.space/api/ingredients'
 
@@ -9,6 +11,10 @@ const sendResetTokenUrl = 'https://norma.nomoreparties.space/api/password-reset'
 
 const resetPasswordUrl =
 	'https://norma.nomoreparties.space/api/password-reset/reset'
+
+const loginUserUrl = 'https://norma.nomoreparties.space/api/auth/login'
+
+const getUserInfoUrl = 'https://norma.nomoreparties.space/api/auth/user'
 
 const checkResponse = res => {
 	return res.ok ? res.json() : Promise.reject(res)
@@ -76,4 +82,24 @@ export const resetPasswordRequest = data => {
 		},
 		body
 	)
+}
+
+export const loginUserRequest = data => {
+	const body = JSON.stringify(data)
+	return sendRequest(
+		loginUserUrl,
+		'POST',
+		{
+			'Content-Type': 'application/json',
+		},
+		body
+	)
+}
+
+export const getUserInfoRequest = () => {
+	const accessToken = getCookie('token')
+	return sendRequest(getUserInfoUrl, 'GET', {
+		'Content-Type': 'application/json',
+		Authorization: `Bearer ${accessToken}`,
+	})
 }

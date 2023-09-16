@@ -5,7 +5,7 @@ import FormInput from '../../components/form-input/form-input'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { sendResetTokenRequest } from '../../utils/api'
 
-export function ForgotPassword() {
+export default function ForgotPassword() {
 	const navigate = useNavigate()
 	const location = useLocation()
 

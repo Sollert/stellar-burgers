@@ -2,10 +2,13 @@ import { useCallback, useMemo, useState } from 'react'
 
 import Form from '../../components/form/form'
 import FormInput from '../../components/form-input/form-input'
+import { useDispatch } from 'react-redux'
+import { loginUser } from '../../services/store/user/user.actions'
 
-export function Login() {
+export default function Login() {
 	const [emailValue, setEmailValue] = useState('')
 	const [passwordValue, setPasswordValue] = useState('')
+	const dispatch = useDispatch()
 
 	const body = useMemo(
 		() => ({
@@ -15,10 +18,13 @@ export function Login() {
 		[emailValue, passwordValue]
 	)
 
-	const onSubmitHandler = useCallback(e => {
-		e.preventDefault()
-		console.log('submit success')
-	}, [])
+	const onSubmitHandler = useCallback(
+		(e, body) => {
+			e.preventDefault()
+			dispatch(loginUser(body))
+		},
+		[dispatch]
+	)
 
 	return (
 		<Form

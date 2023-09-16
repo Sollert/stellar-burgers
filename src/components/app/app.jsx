@@ -14,11 +14,14 @@ import Home from '../../pages/home/home.jsx'
 import Ingredient from '../../pages/ingredient/ingredient.jsx'
 import Layout from '../../pages/layout/layout.jsx'
 import NotFound from '../not-found/not-found.jsx'
-import { Login } from '../../pages/login/login.jsx'
-import { Register } from '../../pages/register/register.jsx'
+import Login from '../../pages/login/login.jsx'
+import Register from '../../pages/register/register.jsx'
+import Profile from '../../pages/profile/profile.jsx'
+import ProfileForm from '../profile-form/profile-form.jsx'
 import ProtectedRoute from '../protected-route/protected-route.jsx'
-import { ForgotPassword } from '../../pages/forgot-password/forgot-password.jsx'
-import { ResetPassword } from '../../pages/reset-password/reset-password.jsx'
+import ForgotPassword from '../../pages/forgot-password/forgot-password.jsx'
+import ResetPassword from '../../pages/reset-password/reset-password.jsx'
+import { getUserInfo } from '../../services/store/user/user.actions.js'
 
 function App() {
 	const dispatch = useDispatch()
@@ -29,6 +32,7 @@ function App() {
 
 	useEffect(() => {
 		dispatch(getIngredients())
+		dispatch(getUserInfo())
 	}, [dispatch])
 
 	useEffect(() => {
@@ -50,6 +54,17 @@ function App() {
 					<Route index element={<Home />} />
 					<Route path='/ingredients/:id' element={<Ingredient />} />
 					<Route path='*' element={<NotFound />} />
+					<Route
+						path='profile'
+						element={
+							<ProtectedRoute>
+								<Profile />
+							</ProtectedRoute>
+						}
+					>
+						<Route index element={<ProfileForm />} />
+						<Route path='orders' element={<div>Пока тут пустовато</div>} />
+					</Route>
 				</Route>
 				<Route
 					path='/login'
