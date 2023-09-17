@@ -35,3 +35,9 @@ export const getCookie = name => {
 
 	return undefined
 }
+
+export const deleteCookie = (name, options) => {
+	const { path, domain } = options
+	const deletionOptions = { expires: new Date(0), path, domain }
+	setCookie(name, '', deletionOptions)
+}

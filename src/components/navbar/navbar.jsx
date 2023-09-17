@@ -2,12 +2,18 @@ import { NavLink, useLocation } from 'react-router-dom'
 import clsx from 'clsx'
 
 import styles from './navbar.module.css'
+import { useDispatch } from 'react-redux'
+import { logoutUser } from '../../services/store/user/user.actions'
+import { deleteCookie } from '../../utils/cookie'
 
 export default function Navbar() {
+	const dispatch = useDispatch()
 	const location = useLocation()
 
 	const onClickHandler = () => {
-		console.log('signOut')
+		dispatch(logoutUser())
+			.then(res => deleteCookie('token', { path: '/' }))
+			.catch(err => console.log(err))
 	}
 
 	return (

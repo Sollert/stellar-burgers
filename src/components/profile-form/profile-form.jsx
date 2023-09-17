@@ -14,21 +14,12 @@ export default function ProfileForm() {
 
 	useEffect(() => {
 		dispatch(getUserInfo())
-	}, [])
+	}, [dispatch])
 
 	const [isChange, setIsChange] = useState(false)
 	const [nameValue, setNameValue] = useState(name)
 	const [loginValue, setLoginValue] = useState(email)
 	const [passwordValue, setPasswordValue] = useState('')
-
-	const body = useMemo(
-		() => ({
-			name: nameValue,
-			email: loginValue,
-			password: passwordValue,
-		}),
-		[nameValue, loginValue, passwordValue]
-	)
 
 	const [passInputType, setPassInputType] = useState('password')
 

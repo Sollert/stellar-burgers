@@ -16,6 +16,8 @@ const loginUserUrl = 'https://norma.nomoreparties.space/api/auth/login'
 
 const getUserInfoUrl = 'https://norma.nomoreparties.space/api/auth/user'
 
+const logoutUserUrl = 'https://norma.nomoreparties.space/api/auth/logout'
+
 const checkResponse = res => {
 	return res.ok ? res.json() : Promise.reject(res)
 }
@@ -98,8 +100,23 @@ export const loginUserRequest = data => {
 
 export const getUserInfoRequest = () => {
 	const accessToken = getCookie('token')
-	return sendRequest(getUserInfoUrl, 'GET', {
-		'Content-Type': 'application/json',
-		Authorization: `Bearer ${accessToken}`,
-	})
+	if (accessToken) {
+		return sendRequest(getUserInfoUrl, 'GET', {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${accessToken}`,
+		})
+	}
+}
+
+export const logoutUserRequest = () => {
+	const token = localStorage.getItem('refreshToken')
+	return sendRequest(
+		logoutUserUrl,
+		'POST',
+		{
+			'Content-Type': 'application/json',
+			Authorization: token,
+		},
+		JSON.stringify({ token })
+	)
 }
