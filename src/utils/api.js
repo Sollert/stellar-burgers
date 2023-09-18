@@ -1,4 +1,5 @@
-import { getCookie } from './cookie'
+import { getCookie, setCookie } from './cookie'
+import { saveTokens } from './utils'
 
 const getIngredientsDataUrl =
 	'https://norma.nomoreparties.space/api/ingredients'
@@ -17,6 +18,10 @@ const loginUserUrl = 'https://norma.nomoreparties.space/api/auth/login'
 const getUserInfoUrl = 'https://norma.nomoreparties.space/api/auth/user'
 
 const logoutUserUrl = 'https://norma.nomoreparties.space/api/auth/logout'
+
+const refreshTokenUrl = 'https://norma.nomoreparties.space/api/auth/token'
+
+const patchUserInfoUrl = 'https://norma.nomoreparties.space/api/auth/user'
 
 const checkResponse = res => {
 	return res.ok ? res.json() : Promise.reject(res)
@@ -100,12 +105,25 @@ export const loginUserRequest = data => {
 
 export const getUserInfoRequest = () => {
 	const accessToken = getCookie('token')
-	if (accessToken) {
-		return sendRequest(getUserInfoUrl, 'GET', {
+	return fetchWithRefresh(getUserInfoUrl, {
+		method: 'GET',
+		headers: {
 			'Content-Type': 'application/json',
 			Authorization: `Bearer ${accessToken}`,
-		})
-	}
+		},
+	})
+}
+
+export const patchUserInfoRequest = async body => {
+	const accessToken = getCookie('token')
+	return fetchWithRefresh(patchUserInfoUrl, {
+		method: 'PATCH',
+		headers: {
+			'Content-Type': 'application/json',
+			authorization: `Bearer ${accessToken}`,
+		},
+		body: JSON.stringify(body),
+	})
 }
 
 export const logoutUserRequest = () => {
@@ -119,4 +137,49 @@ export const logoutUserRequest = () => {
 		},
 		JSON.stringify({ token })
 	)
+}
+
+function refreshTokens() {
+	const refreshToken = localStorage.getItem('refreshToken')
+	return fetch(refreshTokenUrl, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			token: refreshToken,
+		}),
+	})
+		.then(res => res.json())
+		.then(data => {
+			if (!data.success) {
+				return Promise.reject(data)
+			}
+			saveTokens(data)
+			return data
+		})
+		.catch(err => console.log(err))
+}
+
+export async function fetchWithRefresh(url, options) {
+	try {
+		const res = await fetch(url, options)
+		if (!res.ok) {
+			const err = await res.json()
+			throw new Error(err.message)
+		}
+		return res
+	} catch (err) {
+		if (err.message === 'jwt expired') {
+			const refreshData = await refreshTokens()
+			options.headers = {
+				...options.headers,
+				authorization: refreshData.accessToken,
+			}
+			const res = await fetch(url, options)
+			return res
+		} else {
+			return Promise.reject(err)
+		}
+	}
 }

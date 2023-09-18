@@ -6,7 +6,10 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components'
 
 import styles from './profile-form.module.css'
-import { getUserInfo } from '../../services/store/user/user.actions'
+import {
+	getUserInfo,
+	patchUserInfo,
+} from '../../services/store/user/user.actions'
 
 export default function ProfileForm() {
 	const dispatch = useDispatch()
@@ -20,12 +23,20 @@ export default function ProfileForm() {
 	const [nameValue, setNameValue] = useState(name)
 	const [loginValue, setLoginValue] = useState(email)
 	const [passwordValue, setPasswordValue] = useState('')
-
 	const [passInputType, setPassInputType] = useState('password')
 
 	const nameInputRef = useRef(null)
 	const loginInputRef = useRef(null)
 	const passInputRef = useRef(null)
+
+	const body = useMemo(
+		() => ({
+			name: nameValue,
+			email: loginValue,
+			password: passwordValue,
+		}),
+		[nameValue, loginValue, passwordValue]
+	)
 
 	const onChangeHandler = useCallback((e, setFn) => {
 		setFn(e.target.value)
@@ -57,10 +68,15 @@ export default function ProfileForm() {
 		[onBlurHandler]
 	)
 
-	const submitHandler = useCallback(e => {
-		e.preventDefault()
-		console.log('update')
-	}, [])
+	const submitHandler = useCallback(
+		e => {
+			e.preventDefault()
+			dispatch(patchUserInfo(body)).then(res => {
+				setIsChange(false)
+			})
+		},
+		[dispatch, body]
+	)
 
 	const cancelHandler = useCallback(
 		e => {
@@ -119,10 +135,16 @@ export default function ProfileForm() {
 			</div>
 			{isChange && (
 				<div className={styles['button-container']}>
-					<Button type='secondary' onClick={e => cancelHandler(e)}>
+					<Button
+						type='secondary'
+						htmlType='reset'
+						onClick={e => cancelHandler(e)}
+					>
 						Отмена
 					</Button>
-					<Button type='primary'>Сохранить</Button>
+					<Button type='primary' htmlType='submit'>
+						Сохранить
+					</Button>
 				</div>
 			)}
 		</form>

@@ -8,7 +8,7 @@ export default function NotFound() {
 	return (
 		<div className={styles.container}>
 			<h1 className='text text_type_main-large mb-6'>
-				Кажется, вы зашли куда-то не туда
+				Кажется, ты заблудился...
 			</h1>
 			<Link
 				to='/'

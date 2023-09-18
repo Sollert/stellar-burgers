@@ -31,7 +31,7 @@ export default function Form({
 			<form className={styles.form} onSubmit={e => onSubmit(e, body)}>
 				{children}
 				<div className={clsx(styles['form__button'], 'mb-20')}>
-					<Button type='primary' size='medium'>
+					<Button type='primary' size='medium' htmlType='submit'>
 						{buttonText}
 					</Button>
 				</div>

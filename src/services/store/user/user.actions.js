@@ -3,6 +3,7 @@ import {
 	getUserInfoRequest,
 	loginUserRequest,
 	logoutUserRequest,
+	patchUserInfoRequest,
 	registerUserRequest,
 } from '../../../utils/api'
 import { saveTokens } from '../../../utils/utils'
@@ -34,8 +35,9 @@ export const loginUser = createAsyncThunk('loginUser', async data => {
 export const getUserInfo = createAsyncThunk('getUserInfo', async () => {
 	try {
 		const res = await getUserInfoRequest()
-		if (res.success) {
-			return res.user
+		const data = await res.json()
+		if (data.success) {
+			return data.user
 		}
 	} catch (err) {
 		console.lot(err)
@@ -46,6 +48,16 @@ export const logoutUser = createAsyncThunk('logoutUser', async () => {
 	try {
 		const res = await logoutUserRequest()
 		return res
+	} catch (err) {
+		console.log(err)
+	}
+})
+
+export const patchUserInfo = createAsyncThunk('patchUserInfo', async body => {
+	try {
+		const res = await patchUserInfoRequest(body)
+		const data = await res.json()
+		return data
 	} catch (err) {
 		console.log(err)
 	}

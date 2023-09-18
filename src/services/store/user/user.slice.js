@@ -4,6 +4,7 @@ import {
 	loginUser,
 	getUserInfo,
 	logoutUser,
+	patchUserInfo,
 } from './user.actions'
 
 const userSlice = createSlice({
@@ -67,6 +68,19 @@ const userSlice = createSlice({
 			state.user = null
 		})
 		builder.addCase(logoutUser.rejected, state => {
+			state.isRequest = false
+			state.isError = true
+		})
+		builder.addCase(patchUserInfo.pending, state => {
+			state.isRequest = true
+			state.isError = false
+		})
+		builder.addCase(patchUserInfo.fulfilled, (state, action) => {
+			state.isRequest = false
+			state.isAuth = true
+			state.user = action.payload
+		})
+		builder.addCase(patchUserInfo.rejected, state => {
 			state.isRequest = false
 			state.isError = true
 		})
