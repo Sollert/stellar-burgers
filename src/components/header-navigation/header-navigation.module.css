@@ -3,9 +3,16 @@
 }
 
 .header__list {
-  display: flex;
+	display: flex;
 	gap: 8px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.link {
+	display: flex;
+	gap: 8px;
+	text-decoration: none;
+	color: #f2f2f3;
 }

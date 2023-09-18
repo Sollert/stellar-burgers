@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import Form from '../../components/form/form'
 import FormInput from '../../components/form-input/form-input'
@@ -8,8 +8,15 @@ import { useLocation, useNavigate } from 'react-router-dom'
 export default function ResetPassword() {
 	const navigate = useNavigate()
 	const location = useLocation()
+	const previousPage = location.state.from.pathName
 	const [passwordValue, setPasswordValue] = useState('')
 	const [tokenValue, setTokenValue] = useState('')
+
+	useEffect(() => {
+		if (previousPage !== '/forgot-password') {
+			navigate('/forgot-password', { replace: true })
+		}
+	}, [previousPage, navigate])
 
 	const body = useMemo(
 		() => ({
