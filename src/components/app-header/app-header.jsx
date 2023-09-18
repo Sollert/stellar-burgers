@@ -3,12 +3,12 @@ import {
 	ProfileIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 
-import HeaderLink from '../header-link/header-link'
+import { NavLink } from 'react-router-dom'
+
 import HeaderNavigation from '../header-navigation/header-navigation'
+import HeaderLinkText from '../header-link/header-link'
 
 import styles from './app-header.module.css'
-import { NavLink } from 'react-router-dom'
-import HeaderLinkText from '../header-link/header-link'
 
 const AppHeader = () => {
 	return (
