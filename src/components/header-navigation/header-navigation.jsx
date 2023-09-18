@@ -24,7 +24,7 @@ const HeaderNavigation = () => {
 					</NavLink>
 				</li>
 				<li className={'pt-4 pb-4 pl-5 pr-5'}>
-					<NavLink to='/orders' className={styles.link}>
+					<NavLink to='/feed' className={styles.link}>
 						{({ isActive }) => (
 							<>
 								<ListIcon type={isActive ? 'primary' : 'secondary'} />
