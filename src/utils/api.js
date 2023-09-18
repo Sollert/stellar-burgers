@@ -170,7 +170,7 @@ export async function fetchWithRefresh(url, options) {
 		}
 		return res
 	} catch (err) {
-		if (err.message === 'jwt expired') {
+		if (err.message === 'jwt expired' || err.message === 'jwt malformed') {
 			const refreshData = await refreshTokens()
 			options.headers = {
 				...options.headers,

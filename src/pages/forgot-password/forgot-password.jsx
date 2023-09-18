@@ -11,12 +11,9 @@ export default function ForgotPassword() {
 
 	const [emailValue, setEmailValue] = useState('')
 
-	const body = useMemo(
-		() => ({
-			email: emailValue,
-		}),
-		[emailValue]
-	)
+	const body = {
+		email: emailValue,
+	}
 
 	const onSubmitHandler = e => {
 		e.preventDefault()

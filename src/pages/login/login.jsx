@@ -10,13 +10,10 @@ export default function Login() {
 	const [passwordValue, setPasswordValue] = useState('')
 	const dispatch = useDispatch()
 
-	const body = useMemo(
-		() => ({
-			email: emailValue,
-			password: passwordValue,
-		}),
-		[emailValue, passwordValue]
-	)
+	const body = {
+		email: emailValue,
+		password: passwordValue,
+	}
 
 	const onSubmitHandler = useCallback(
 		(e, body) => {

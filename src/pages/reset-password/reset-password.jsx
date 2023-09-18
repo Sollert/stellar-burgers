@@ -8,23 +8,20 @@ import { useLocation, useNavigate } from 'react-router-dom'
 export default function ResetPassword() {
 	const navigate = useNavigate()
 	const location = useLocation()
-	const previousPage = location.state.from.pathName
+	const previousPage = location.state.from.pathname
 	const [passwordValue, setPasswordValue] = useState('')
 	const [tokenValue, setTokenValue] = useState('')
 
 	useEffect(() => {
 		if (previousPage !== '/forgot-password') {
-			navigate('/forgot-password', { replace: true })
+			navigate('/forgot-password')
 		}
 	}, [previousPage, navigate])
 
-	const body = useMemo(
-		() => ({
-			password: passwordValue,
-			token: tokenValue,
-		}),
-		[tokenValue, passwordValue]
-	)
+	const body = {
+		password: passwordValue,
+		token: tokenValue,
+	}
 
 	const onSubmitHandler = e => {
 		e.preventDefault()
