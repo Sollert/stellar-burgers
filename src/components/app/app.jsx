@@ -24,6 +24,8 @@ import ResetPassword from '../../pages/reset-password/reset-password.jsx'
 import { getUserInfo } from '../../services/store/user/user.actions.js'
 import Feed from '../../pages/feed/feed.jsx'
 import OrdersHistory from '../orders-history/orders-history.jsx'
+import { Order } from '../../pages/order/order.jsx'
+import OrderInfo from '../order-info/order-info.jsx'
 
 function App() {
 	const dispatch = useDispatch()
@@ -65,9 +67,18 @@ function App() {
 						}
 					>
 						<Route index element={<ProfileForm />} />
-						<Route path='orders' element={<OrdersHistory />} />
+						<Route path='/profile/orders' element={<OrdersHistory />} />
 					</Route>
-					<Route path='feed' element={<Feed />} />
+					<Route path='/feed' element={<Feed />} />
+					<Route path='/feed/:id' element={<Order />} />
+					<Route
+						path='/profile/orders/:id'
+						element={
+							<ProtectedRoute>
+								<Order />
+							</ProtectedRoute>
+						}
+					/>
 				</Route>
 				<Route
 					path='/login'
@@ -110,6 +121,24 @@ function App() {
 							<Modal closeModal={closeModalHandler}>
 								<IngredientDetails />
 							</Modal>
+						}
+					/>
+					<Route
+						path='/feed/:id'
+						element={
+							<Modal closeModal={closeModalHandler}>
+								<OrderInfo isModal />
+							</Modal>
+						}
+					/>
+					<Route
+						path='/profile/orders/:id'
+						element={
+							<ProtectedRoute>
+								<Modal closeModal={closeModalHandler}>
+									<OrderInfo isModal />
+								</Modal>
+							</ProtectedRoute>
 						}
 					/>
 				</Routes>
