@@ -22,6 +22,8 @@ import ProtectedRoute from '../protected-route/protected-route.jsx'
 import ForgotPassword from '../../pages/forgot-password/forgot-password.jsx'
 import ResetPassword from '../../pages/reset-password/reset-password.jsx'
 import { getUserInfo } from '../../services/store/user/user.actions.js'
+import Feed from '../../pages/feed/feed.jsx'
+import OrdersHistory from '../orders-history/orders-history.jsx'
 
 function App() {
 	const dispatch = useDispatch()
@@ -63,8 +65,9 @@ function App() {
 						}
 					>
 						<Route index element={<ProfileForm />} />
-						<Route path='orders' element={<div>Пока тут пустовато</div>} />
+						<Route path='orders' element={<OrdersHistory />} />
 					</Route>
+					<Route path='feed' element={<Feed />} />
 				</Route>
 				<Route
 					path='/login'

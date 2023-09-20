@@ -1,4 +1,4 @@
-import { getCookie, setCookie } from './cookie'
+import { getCookie } from './cookie'
 import { saveTokens } from './utils'
 
 const getIngredientsDataUrl =

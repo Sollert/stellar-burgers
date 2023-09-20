@@ -4,14 +4,30 @@ import { reducer as ingredientsReducer } from './ingredients/ingredients.slice'
 import { reducer as orderDetailsReducer } from './orderDetails/orderDetails.slice'
 import { reducer as userReducer } from './user/user.slice'
 
+import { socketMiddleware } from './ws/ws.middleware'
+import { userAuthWsOptions, wsOptions } from '../../utils/wsOptions'
+import wsSlice from './ws/ws.slice'
+import userAuthWsSlice from './userAuthWs/userAuthWs.slice'
+
 const rootReducer = combineReducers({
 	cart: cartReducer,
 	ingredients: ingredientsReducer,
 	orderDetails: orderDetailsReducer,
 	user: userReducer,
+	ws: wsSlice,
+	userAuthWs: userAuthWsSlice,
 })
 
 export const store = configureStore({
 	devTools: true,
 	reducer: rootReducer,
+	middleware: getDefaultMiddleware =>
+		getDefaultMiddleware().concat(
+			socketMiddleware('wss://norma.nomoreparties.space/orders/all', wsOptions),
+			socketMiddleware(
+				'wss://norma.nomoreparties.space/orders',
+				userAuthWsOptions,
+				true
+			)
+		),
 })

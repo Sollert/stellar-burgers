@@ -1,0 +1,27 @@
+.container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.feed {
+	width: 600px;
+	max-height: 82vh;
+	overflow-y: scroll;
+}
+
+.orders-list {
+	list-style: none;
+	padding: 0;
+}
+
+.stats {
+	width: 580px;
+	display: flex;
+	flex-direction: column;
+	gap: 60px;
+}
+
+.orders-board {
+	display: flex;
+	gap: 36px;
+}

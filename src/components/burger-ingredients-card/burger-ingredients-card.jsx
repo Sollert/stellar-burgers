@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useDrag } from 'react-dnd'
 import {
 	CurrencyIcon,
@@ -13,7 +13,6 @@ import { Link, useLocation } from 'react-router-dom'
 const BurgerIngredientsCard = ({ item }) => {
 	const location = useLocation()
 	const cart = useSelector(store => store.cart)
-	const dispatch = useDispatch()
 	const [, dragRef] = useDrag(
 		{
 			type: 'ingredient',
