@@ -1,12 +1,5 @@
-import styles from './header-link.module.css';
+const HeaderLinkText = ({ isActive, text }) => {
+	return <span className={`${!isActive && 'text_color_inactive'}`}>{text}</span>
+}
 
-const HeaderLink = ({ children, text, isActive }) => {
-  return (
-    <a href="/#" className={`${styles.header__link}`}>
-      {children}
-      <span className={`${!isActive && 'text_color_inactive'}`}>{text}</span>
-    </a>
-  );
-};
-
-export default HeaderLink;
+export default HeaderLinkText

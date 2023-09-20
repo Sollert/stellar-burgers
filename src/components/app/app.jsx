@@ -1,54 +1,120 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
 
-import { actions as ingredientDetailsActions } from '../../services/store/ingredientDetails/ingredientDetails.slice.js'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+
 import { actions as orderDetailsActions } from '../../services/store/orderDetails/orderDetails.slice.js'
 
 import { getIngredients } from '../../services/store/ingredients/ingredients.actions'
-import { burgerIngredientsConfig } from '../../utils/config'
-
-import AppHeader from '../app-header/app-header'
-import BurgerIngredients from '../burger-ingredients/burger-ingredients'
-import BurgerConstructor from '../burger-constructor/burger-constructor'
+import IngredientDetails from '../ingredient-details/ingredient-details'
 import Modal from '../modal/modal'
 import OrderDetails from '../order-details/order-details'
-import IngredientDetails from '../ingredient-details/ingredient-details'
 
-import styles from './app.module.css'
+import Home from '../../pages/home/home.jsx'
+import Ingredient from '../../pages/ingredient/ingredient.jsx'
+import Layout from '../../pages/layout/layout.jsx'
+import NotFound from '../not-found/not-found.jsx'
+import Login from '../../pages/login/login.jsx'
+import Register from '../../pages/register/register.jsx'
+import Profile from '../../pages/profile/profile.jsx'
+import ProfileForm from '../profile-form/profile-form.jsx'
+import ProtectedRoute from '../protected-route/protected-route.jsx'
+import ForgotPassword from '../../pages/forgot-password/forgot-password.jsx'
+import ResetPassword from '../../pages/reset-password/reset-password.jsx'
+import { getUserInfo } from '../../services/store/user/user.actions.js'
 
 function App() {
 	const dispatch = useDispatch()
-	const modalIngredientState = useSelector(
-		store => store.ingredientDetails.modalVisible
-	)
+	const location = useLocation()
+	const navigate = useNavigate()
+
 	const modalOrderState = useSelector(store => store.orderDetails.modalVisible)
 
 	useEffect(() => {
 		dispatch(getIngredients())
+		dispatch(getUserInfo())
 	}, [dispatch])
+
+	useEffect(() => {
+		if (location.state?.background) {
+			window.history.replaceState({}, '')
+		}
+	}, [location.state?.background])
+
+	const background = location.state?.background
+
+	const closeModalHandler = useCallback(() => {
+		navigate(-1)
+	}, [navigate])
 
 	return (
 		<>
-			<AppHeader />
-			<DndProvider backend={HTML5Backend}>
-				<main className={styles.main}>
-					<BurgerIngredients config={burgerIngredientsConfig} />
-					<BurgerConstructor />
-				</main>
-			</DndProvider>
+			<Routes location={background || location}>
+				<Route path='/' element={<Layout />}>
+					<Route index element={<Home />} />
+					<Route path='/ingredients/:id' element={<Ingredient />} />
+					<Route path='*' element={<NotFound />} />
+					<Route
+						path='profile'
+						element={
+							<ProtectedRoute>
+								<Profile />
+							</ProtectedRoute>
+						}
+					>
+						<Route index element={<ProfileForm />} />
+						<Route path='orders' element={<div>Пока тут пустовато</div>} />
+					</Route>
+				</Route>
+				<Route
+					path='/login'
+					element={
+						<ProtectedRoute anonymous>
+							<Login />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path='/register'
+					element={
+						<ProtectedRoute anonymous>
+							<Register />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path='/forgot-password'
+					element={
+						<ProtectedRoute anonymous>
+							<ForgotPassword />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path='/reset-password'
+					element={
+						<ProtectedRoute anonymous>
+							<ResetPassword />
+						</ProtectedRoute>
+					}
+				/>
+			</Routes>
+			{background && (
+				<Routes>
+					<Route
+						path='/ingredients/:id'
+						element={
+							<Modal closeModal={closeModalHandler}>
+								<IngredientDetails />
+							</Modal>
+						}
+					/>
+				</Routes>
+			)}
+
 			{modalOrderState && (
 				<Modal closeModal={() => dispatch(orderDetailsActions.closeModal())}>
 					<OrderDetails />
-				</Modal>
-			)}
-			{modalIngredientState && (
-				<Modal
-					closeModal={() => dispatch(ingredientDetailsActions.closeModal())}
-					title={'Детали ингредиента'}
-				>
-					<IngredientDetails />
 				</Modal>
 			)}
 		</>

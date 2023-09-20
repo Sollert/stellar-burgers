@@ -5,13 +5,13 @@ import {
 	Counter,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 
-import { actions as ingredientDetailsActions } from '../../services/store/ingredientDetails/ingredientDetails.slice.js'
-
 import { ingredientPropType } from '../../utils/prop-types'
 
 import styles from './burger-ingredients-card.module.css'
+import { Link, useLocation } from 'react-router-dom'
 
 const BurgerIngredientsCard = ({ item }) => {
+	const location = useLocation()
 	const cart = useSelector(store => store.cart)
 	const dispatch = useDispatch()
 	const [, dragRef] = useDrag(
@@ -39,25 +39,25 @@ const BurgerIngredientsCard = ({ item }) => {
 	}
 
 	return (
-		<li
-			className={styles.card}
-			onClick={() => {
-				dispatch(ingredientDetailsActions.openModal(item))
-			}}
-			ref={dragRef}
-		>
-			{isIngredientInCart(cart, item) && (
-				<Counter
-					count={findIngredientInCart(cart, item).length}
-					size='default'
-				/>
-			)}
-			<img className={'mb-2'} src={item.image} alt={item.name} />
-			<p className={styles.card__priceContainer}>
-				<span className={'text_type_digits-default'}>{item.price}</span>
-				<CurrencyIcon type='primary' />
-			</p>
-			<h4 className={'text text_type_main-default'}>{item.name}</h4>
+		<li className={styles.card} ref={dragRef}>
+			<Link
+				to={`/ingredients/${item._id}`}
+				state={{ background: location }}
+				className={styles.link}
+			>
+				{isIngredientInCart(cart, item) && (
+					<Counter
+						count={findIngredientInCart(cart, item).length}
+						size='default'
+					/>
+				)}
+				<img className={'mb-2'} src={item.image} alt={item.name} />
+				<p className={styles.card__priceContainer}>
+					<span className={'text_type_digits-default'}>{item.price}</span>
+					<CurrencyIcon type='primary' />
+				</p>
+				<h4 className={'text text_type_main-default'}>{item.name}</h4>
+			</Link>
 		</li>
 	)
 }

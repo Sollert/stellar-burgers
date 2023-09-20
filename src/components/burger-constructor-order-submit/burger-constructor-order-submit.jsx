@@ -10,9 +10,12 @@ import { actions as cartActions } from '../../services/store/cart/cart.slice'
 import { createOrder } from '../../services/store/orderDetails/orderDetails.actions'
 
 import styles from './burger-constructor-order-submit.module.css'
+import { useNavigate } from 'react-router-dom'
 
 const BurgerConstructorOrderSubmit = () => {
+	const navigate = useNavigate()
 	const dispatch = useDispatch()
+	const userIsAuth = useSelector(store => store.user.isAuth)
 	const totalPrice = useSelector(store => store.cart.totalPrice)
 	const bun = useSelector(store => store.cart.bun)
 	const toppings = useSelector(store => store.cart.toppings)
@@ -20,9 +23,13 @@ const BurgerConstructorOrderSubmit = () => {
 	const ids = [bun?._id, ...toppings.map(item => item._id)]
 
 	const handleCreateOrder = () => {
-		dispatch(createOrder(ids))
-			.then(dispatch(cartActions.resetCart()))
-			.catch(error => console.log(error))
+		if (userIsAuth) {
+			dispatch(createOrder(ids))
+				.then(dispatch(cartActions.resetCart()))
+				.catch(error => console.log(error))
+		} else {
+			navigate('/login')
+		}
 	}
 
 	return (
