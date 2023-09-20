@@ -1,6 +1,7 @@
 .container {
 	display: flex;
-	gap: 15px;
+	max-width: 1280px;
+	width: 100%;
 }
 
 .main {

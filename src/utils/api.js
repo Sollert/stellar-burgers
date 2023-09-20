@@ -41,7 +41,7 @@ export const getIngredientsData = () => {
 	})
 }
 
-export const sendOrderRequest = ids => {
+export const sendOrderRequest = (ids, token) => {
 	const body = JSON.stringify({
 		ingredients: ids,
 	})
@@ -50,6 +50,7 @@ export const sendOrderRequest = ids => {
 		'POST',
 		{
 			'Content-Type': 'application/json',
+			Authorization: token,
 		},
 		body
 	)
