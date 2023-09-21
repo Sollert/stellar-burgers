@@ -14,8 +14,8 @@ const logoutUserUrl = `${BASE_URL}/auth/logout`
 const refreshTokenUrl = `${BASE_URL}/auth/token`
 const patchUserInfoUrl = `${BASE_URL}/auth/user`
 
-const checkResponse = res => {
-	return res.ok ? res.json() : Promise.reject(res)
+const checkResponse = async res => {
+	return res.ok ? res : Promise.reject(await res.json())
 }
 
 const sendRequest = (url, method, headers, body = null) => {
@@ -156,11 +156,7 @@ function refreshTokens() {
 export async function fetchWithRefresh(url, options) {
 	try {
 		const res = await fetch(url, options)
-		if (!res.ok) {
-			const err = await res.json()
-			throw new Error(err.message)
-		}
-		return res
+		return await checkResponse(res)
 	} catch (err) {
 		if (err.message === 'jwt expired' || err.message === 'jwt malformed') {
 			const refreshData = await refreshTokens()
