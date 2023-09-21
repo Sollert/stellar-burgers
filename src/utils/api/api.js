@@ -141,11 +141,10 @@ export const logoutUserRequest = () => {
   const token = localStorage.getItem('refreshToken')
   return sendRequest(
     LOGOUT_USER_ENDPOINT,
-    POST,
     {
-      'Content-Type': 'application/json',
-      Authorization: token,
-    },
-    JSON.stringify({token})
+      method: POST,
+      headers: headersWithAuth(token),
+      body: JSON.stringify({token})
+    }
   )
 }
