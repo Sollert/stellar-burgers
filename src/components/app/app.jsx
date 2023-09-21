@@ -27,12 +27,16 @@ import OrdersHistory from '../orders-history/orders-history.jsx'
 import { Order } from '../../pages/order/order.jsx'
 import OrderInfo from '../order-info/order-info.jsx'
 
+import styles from './app.module.css'
+import Loader from '../loader/loader.jsx'
+
 function App() {
 	const dispatch = useDispatch()
 	const location = useLocation()
 	const navigate = useNavigate()
 
 	const modalOrderState = useSelector(store => store.orderDetails.modalVisible)
+	const orderState = useSelector(store => store.orderDetails.order)
 
 	useEffect(() => {
 		dispatch(getIngredients())
@@ -119,6 +123,11 @@ function App() {
 						path='/ingredients/:id'
 						element={
 							<Modal closeModal={closeModalHandler}>
+								<h2
+									className={`${styles['ingredient-modal-title']} text_type_main-large`}
+								>
+									Детали ингредиента
+								</h2>
 								<IngredientDetails />
 							</Modal>
 						}
@@ -146,7 +155,7 @@ function App() {
 
 			{modalOrderState && (
 				<Modal closeModal={() => dispatch(orderDetailsActions.closeModal())}>
-					<OrderDetails />
+					{orderState ? <OrderDetails /> : <Loader />}
 				</Modal>
 			)}
 		</>

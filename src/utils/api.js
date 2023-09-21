@@ -1,33 +1,24 @@
 import { getCookie } from './cookie'
 import { saveTokens } from './utils'
 
-const getIngredientsDataUrl =
-	'https://norma.nomoreparties.space/api/ingredients'
+const BASE_URL = 'https://norma.nomoreparties.space/api'
 
-const createOrderUrl = 'https://norma.nomoreparties.space/api/orders'
-
-const registerUserUrl = 'https://norma.nomoreparties.space/api/auth/register'
-
-const sendResetTokenUrl = 'https://norma.nomoreparties.space/api/password-reset'
-
-const resetPasswordUrl =
-	'https://norma.nomoreparties.space/api/password-reset/reset'
-
-const loginUserUrl = 'https://norma.nomoreparties.space/api/auth/login'
-
-const getUserInfoUrl = 'https://norma.nomoreparties.space/api/auth/user'
-
-const logoutUserUrl = 'https://norma.nomoreparties.space/api/auth/logout'
-
-const refreshTokenUrl = 'https://norma.nomoreparties.space/api/auth/token'
-
-const patchUserInfoUrl = 'https://norma.nomoreparties.space/api/auth/user'
+const getIngredientsDataUrl = `${BASE_URL}/ingredients`
+const createOrderUrl = `${BASE_URL}/orders`
+const registerUserUrl = `${BASE_URL}/auth/register`
+const sendResetTokenUrl = `${BASE_URL}/password-reset`
+const resetPasswordUrl = `${BASE_URL}/password-reset/reset`
+const loginUserUrl = `${BASE_URL}/auth/login`
+const getUserInfoUrl = `${BASE_URL}/auth/user`
+const logoutUserUrl = `${BASE_URL}/auth/logout`
+const refreshTokenUrl = `${BASE_URL}/auth/token`
+const patchUserInfoUrl = `${BASE_URL}/auth/user`
 
 const checkResponse = res => {
 	return res.ok ? res.json() : Promise.reject(res)
 }
 
-const sendRequest = async (url, method, headers, body = null) => {
+const sendRequest = (url, method, headers, body = null) => {
 	return fetch(url, {
 		method: method,
 		headers: headers,
