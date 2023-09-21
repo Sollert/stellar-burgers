@@ -3,13 +3,11 @@ import styles from './loader.module.css'
 
 const Loader = () => {
 	return (
-		<div className={styles.loader}>
-			<div className={styles.box}></div>
-			<div className={styles.box}></div>
-			<div className={styles.box}></div>
-			<div className={styles.box}></div>
+		<div className={styles.container}>
+			<div className={styles.loader}></div>
 		</div>
 	)
+	return <span className={styles.loader}></span>
 }
 
 export default React.memo(Loader)

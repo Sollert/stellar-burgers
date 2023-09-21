@@ -1,9 +1,10 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+
+import { resetPasswordRequest } from '../../utils/api'
 
 import Form from '../../components/form/form'
 import FormInput from '../../components/form-input/form-input'
-import { resetPasswordRequest } from '../../utils/api'
-import { useLocation, useNavigate } from 'react-router-dom'
 
 export default function ResetPassword() {
 	const navigate = useNavigate()

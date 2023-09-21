@@ -16,7 +16,6 @@ const wsSlice = createSlice({
 		connectionSuccess: {
 			reducer: state => {
 				state.wsConnected = true
-				console.log(state.orders)
 			},
 		},
 		connectionClosed: {
@@ -32,7 +31,6 @@ const wsSlice = createSlice({
 		getOrders: {
 			reducer: (state, action) => {
 				state.orders = action.payload
-				console.log(state.orders)
 			},
 		},
 	},

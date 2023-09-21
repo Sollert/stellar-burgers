@@ -5,7 +5,7 @@ import { reducer as orderDetailsReducer } from './orderDetails/orderDetails.slic
 import { reducer as userReducer } from './user/user.slice'
 
 import { socketMiddleware } from './ws/ws.middleware'
-import { userAuthWsOptions, wsOptions } from '../../utils/wsOptions'
+import { userAuthWsConfig, wsConfig } from '../../utils/config'
 import wsSlice from './ws/ws.slice'
 import userAuthWsSlice from './userAuthWs/userAuthWs.slice'
 
@@ -23,10 +23,10 @@ export const store = configureStore({
 	reducer: rootReducer,
 	middleware: getDefaultMiddleware =>
 		getDefaultMiddleware().concat(
-			socketMiddleware('wss://norma.nomoreparties.space/orders/all', wsOptions),
+			socketMiddleware('wss://norma.nomoreparties.space/orders/all', wsConfig),
 			socketMiddleware(
 				'wss://norma.nomoreparties.space/orders',
-				userAuthWsOptions,
+				userAuthWsConfig,
 				true
 			)
 		),

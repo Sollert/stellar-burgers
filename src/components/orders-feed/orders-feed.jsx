@@ -9,6 +9,7 @@ import OrdersList from '../orders-list/orders-list.jsx'
 
 import styles from './orders-feed.module.css'
 import OrdersCounter from '../orders-counter/orders-counter.jsx'
+import Loader from '../loader/loader.jsx'
 
 export default function OrdersFeed() {
 	const dispatch = useDispatch()
@@ -23,6 +24,8 @@ export default function OrdersFeed() {
 			dispatch(wsClose())
 		}
 	}, [dispatch])
+
+	if (orders.length === 0 || !total || !totalToday) return <Loader />
 
 	return (
 		<div className={styles['container']}>

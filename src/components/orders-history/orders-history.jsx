@@ -10,6 +10,7 @@ import {
 import OrdersList from '../orders-list/orders-list'
 
 import styles from './orders-history.module.css'
+import Loader from '../loader/loader.jsx'
 
 const OrdersHistory = () => {
 	const dispatch = useDispatch()
@@ -21,6 +22,8 @@ const OrdersHistory = () => {
 			dispatch(userAuthWsClose())
 		}
 	}, [dispatch])
+
+	if (orders.length === 0) return <Loader />
 
 	return (
 		<section className={clsx(styles.container, 'custom-scroll')}>
