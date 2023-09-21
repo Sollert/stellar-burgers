@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { resetPasswordRequest } from '../../utils/api'
+import { resetPasswordRequest } from '../../utils/api/api'
 
 import Form from '../../components/form/form'
 import FormInput from '../../components/form-input/form-input'

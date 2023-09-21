@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { sendResetTokenRequest } from '../../utils/api'
+import { sendResetTokenRequest } from '../../utils/api/api'
 
 import Form from '../../components/form/form'
 import FormInput from '../../components/form-input/form-input'

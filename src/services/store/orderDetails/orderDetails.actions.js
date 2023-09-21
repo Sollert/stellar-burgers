@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { sendOrderRequest } from '../../../utils/api'
+import { sendOrderRequest } from '../../../utils/api/api'
 import { getCookie } from '../../../utils/cookie'
 
 export const createOrder = createAsyncThunk('createOrder', async ids => {
