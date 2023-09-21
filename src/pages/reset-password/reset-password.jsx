@@ -9,7 +9,7 @@ import FormInput from '../../components/form-input/form-input'
 export default function ResetPassword() {
 	const navigate = useNavigate()
 	const location = useLocation()
-	const previousPage = location.state.from.pathname
+	const previousPage = location?.state?.from.pathname
 	const [passwordValue, setPasswordValue] = useState('')
 	const [tokenValue, setTokenValue] = useState('')
 

@@ -15,7 +15,7 @@ const refreshTokenUrl = `${BASE_URL}/auth/token`
 const patchUserInfoUrl = `${BASE_URL}/auth/user`
 
 const checkResponse = async res => {
-	return res.ok ? res : Promise.reject(await res.json())
+	return res.ok ? await res.json() : Promise.reject(await res.json())
 }
 
 const sendRequest = (url, method, headers, body = null) => {

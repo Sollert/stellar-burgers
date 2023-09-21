@@ -42,7 +42,6 @@ const Modal = ({ children, closeModal, title }) => {
 }
 
 Modal.propTypes = {
-	children: PropTypes.element,
 	closeModal: PropTypes.func,
 	title: PropTypes.string,
 }

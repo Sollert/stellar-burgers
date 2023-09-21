@@ -35,9 +35,8 @@ export const loginUser = createAsyncThunk('loginUser', async data => {
 export const getUserInfo = createAsyncThunk('getUserInfo', async () => {
 	try {
 		const res = await getUserInfoRequest()
-		const data = await res.json()
-		if (data.success) {
-			return data.user
+		if (res.success) {
+			return res.user
 		}
 	} catch (err) {
 		console.lot(err)
@@ -56,8 +55,7 @@ export const logoutUser = createAsyncThunk('logoutUser', async () => {
 export const patchUserInfo = createAsyncThunk('patchUserInfo', async body => {
 	try {
 		const res = await patchUserInfoRequest(body)
-		const data = await res.json()
-		return data
+		return res
 	} catch (err) {
 		console.log(err)
 	}

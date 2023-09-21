@@ -5,6 +5,5 @@ import { getCookie } from '../../../utils/cookie'
 export const createOrder = createAsyncThunk('createOrder', async ids => {
 	const token = `Bearer ${getCookie('token')}`
 	const res = await sendOrderRequest(ids, token)
-	const data = await res.json()
-	return data.order
+	return res.order
 })
