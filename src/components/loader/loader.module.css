@@ -5,6 +5,11 @@
 	left: 50%;
 }
 
+.title {
+	margin-top: 10px;
+	text-align: center;
+}
+
 /* Hamburger */
 
 .hamburger {

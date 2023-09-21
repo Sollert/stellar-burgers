@@ -3,5 +3,6 @@ import { getIngredientsData } from '../../../utils/api'
 
 export const getIngredients = createAsyncThunk('getIngredients', async () => {
 	const res = await getIngredientsData()
-	return res.data
+	const info = await res.json()
+	return info.data
 })

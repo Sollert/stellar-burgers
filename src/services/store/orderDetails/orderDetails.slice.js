@@ -25,8 +25,6 @@ const orderDetailsSlice = createSlice({
 		builder.addCase(createOrder.fulfilled, (state, action) => {
 			state.isLoading = false
 			state.order = action.payload
-			state.modalVisible = true
-			console.log(state.order)
 		})
 		builder.addCase(createOrder.rejected, state => {
 			state.isLoading = true

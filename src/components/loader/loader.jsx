@@ -20,6 +20,9 @@ const Loader = () => {
 				<div className={styles.beef}></div>
 				<div className={styles['bottom-bun']}></div>
 			</div>
+			<h2 className={clsx('text text_type_main-default', styles.title)}>
+				Загрузка
+			</h2>
 		</div>
 	)
 }
