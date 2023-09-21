@@ -4,13 +4,13 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Route, Routes, useLocation, useNavigate} from 'react-router-dom'
 
 import {
-	actions as orderDetailsActions
+  actions as orderDetailsActions
 } from '../../services/store/orderDetails/orderDetails.slice.js'
 
 import {getIngredients} from '../../services/store/ingredients/ingredients.actions'
-import IngredientDetails from '../ingredient-details/ingredient-details'
+import IngredientDetails from '../ingredient/ingredient-details/ingredient-details'
 import Modal from '../modal/modal'
-import OrderDetails from '../order-details/order-details'
+import OrderDetails from '../order/order-details/order-details'
 
 import Home from '../../pages/home/home.jsx'
 import Ingredient from '../../pages/ingredient/ingredient.jsx'
@@ -25,9 +25,9 @@ import ForgotPassword from '../../pages/forgot-password/forgot-password.jsx'
 import ResetPassword from '../../pages/reset-password/reset-password.jsx'
 import {getUserInfo} from '../../services/store/user/user.actions.js'
 import Feed from '../../pages/feed/feed.jsx'
-import OrdersHistory from '../orders-history/orders-history.jsx'
+import OrdersHistory from '../orders/orders-history/orders-history.jsx'
 import {Order} from '../../pages/order/order.jsx'
-import OrderInfo from '../order-info/order-info.jsx'
+import OrderInfo from '../order/order-info/order-info.jsx'
 
 import styles from './app.module.css'
 import Loader from '../loader/loader.jsx'
