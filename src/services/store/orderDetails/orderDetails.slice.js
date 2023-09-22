@@ -6,7 +6,7 @@ const orderDetailsSlice = createSlice({
 	initialState: {
 		isLoading: false,
 		isError: false,
-		order: {},
+		order: null,
 		modalVisible: false,
 	},
 	reducers: {
@@ -20,11 +20,11 @@ const orderDetailsSlice = createSlice({
 	extraReducers: builder => {
 		builder.addCase(createOrder.pending, state => {
 			state.isLoading = true
+			state.modalVisible = true
 		})
 		builder.addCase(createOrder.fulfilled, (state, action) => {
 			state.isLoading = false
 			state.order = action.payload
-			state.modalVisible = true
 		})
 		builder.addCase(createOrder.rejected, state => {
 			state.isLoading = true
