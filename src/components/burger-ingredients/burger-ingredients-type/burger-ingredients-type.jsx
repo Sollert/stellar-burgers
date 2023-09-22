@@ -1,10 +1,8 @@
 import {forwardRef} from 'react'
-import PropTypes from 'prop-types'
 
 import BurgerIngredientsCardsList
-	from '../burger-ingredients-cards-list/burger-ingredients-cards-list'
+  from '../burger-ingredients-cards-list/burger-ingredients-cards-list'
 
-import {ingredientConfigPropType} from '../../../utils/prop-types'
 
 import styles from './burger-ingredients-type.module.css'
 
@@ -23,10 +21,5 @@ const BurgerIngredientsType = forwardRef(({type, config}, ref) => {
     </li>
   )
 })
-
-BurgerIngredientsType.propTypes = {
-  config: ingredientConfigPropType.isRequired,
-  type: PropTypes.string.isRequired,
-}
 
 export default BurgerIngredientsType

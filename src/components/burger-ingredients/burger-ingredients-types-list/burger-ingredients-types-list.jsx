@@ -1,7 +1,5 @@
 import BurgerIngredientsType from '../burger-ingredients-type/burger-ingredients-type'
 
-import {ingredientConfigPropType, refsPropType} from '../../../utils/prop-types'
-
 import styles from './burger-ingredients-types-list.module.css'
 
 const BurgerIngredientsTypesList = ({
@@ -25,11 +23,5 @@ const BurgerIngredientsTypesList = ({
   )
 }
 
-BurgerIngredientsTypesList.propTypes = {
-  config: ingredientConfigPropType.isRequired,
-  bunRef: refsPropType.isRequired,
-  sauceRef: refsPropType.isRequired,
-  mainRef: refsPropType.isRequired,
-}
 
 export default BurgerIngredientsTypesList

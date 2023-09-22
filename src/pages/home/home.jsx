@@ -1,7 +1,7 @@
 import {DndProvider} from 'react-dnd'
 import {HTML5Backend} from 'react-dnd-html5-backend'
 
-import {burgerIngredientsConfig} from '../../utils/config'
+import {burgerIngredientsConfig} from '../../utils/config/config'
 
 import BurgerConstructor from '../../components/burger-constructor/burger-constructor'
 import BurgerIngredients from '../../components/burger-ingredients/burger-ingredients'

@@ -2,8 +2,6 @@ import {useSelector} from 'react-redux'
 import {useDrag} from 'react-dnd'
 import {Counter, CurrencyIcon,} from '@ya.praktikum/react-developer-burger-ui-components'
 
-import {ingredientPropType} from '../../../utils/prop-types'
-
 import styles from './burger-ingredients-card.module.css'
 import {Link, useLocation} from 'react-router-dom'
 
@@ -56,10 +54,6 @@ const BurgerIngredientsCard = ({item}) => {
       </Link>
     </li>
   )
-}
-
-BurgerIngredientsCard.propTypes = {
-  item: ingredientPropType.isRequired,
 }
 
 export default BurgerIngredientsCard

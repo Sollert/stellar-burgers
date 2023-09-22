@@ -1,11 +1,9 @@
 import {useRef, useState} from 'react'
-import PropTypes from 'prop-types'
 
 import BurgerIngredientsTabs from './burger-ingredients-tabs/burger-ingredients-tabs'
 import BurgerIngredientsTypesList
-	from './burger-ingredients-types-list/burger-ingredients-types-list'
+  from './burger-ingredients-types-list/burger-ingredients-types-list'
 
-import {ingredientConfigPropType} from '../../utils/prop-types'
 
 import styles from './burger-ingredients.module.css'
 
@@ -55,11 +53,6 @@ const BurgerIngredients = ({config}) => {
       />
     </section>
   )
-}
-
-BurgerIngredients.propType = {
-  config: ingredientConfigPropType.isRequired,
-  openModal: PropTypes.func.isRequired,
 }
 
 export default BurgerIngredients

@@ -1,4 +1,4 @@
-import {getCookie} from '../cookie'
+import {getCookie} from '../cookie/cookie'
 import {saveTokens} from '../utils'
 import {
   CREATE_ORDER_ENDPOINT,
@@ -16,6 +16,7 @@ import {GET, PATCH, POST} from "./methods";
 import {headers, headersWithAuth} from "./headers";
 
 const checkResponse = async res => {
+  console.log(res)
   return res.ok
     ? await res.json()
     : Promise.reject(await res.json())
