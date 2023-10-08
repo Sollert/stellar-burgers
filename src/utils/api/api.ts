@@ -14,15 +14,21 @@ import {
 } from "./endpoints";
 import {GET, PATCH, POST} from "./methods";
 import {headers, headersWithAuth} from "./headers";
+import {
+  loginUserData,
+  patchUserData,
+  registerUserData,
+  resetPasswordData,
+  resetTokenRequestData
+} from "./api.types";
 
-const checkResponse = async res => {
-  console.log(res)
+const checkResponse = async (res: Response) => {
   return res.ok
     ? await res.json()
     : Promise.reject(await res.json())
 }
 
-const sendRequest = async (url, options) => {
+const sendRequest = async (url: RequestInfo | string, options: RequestInit) => {
   const res = await fetch(url, options)
   return await checkResponse(res)
 }
@@ -42,10 +48,10 @@ async function refreshTokens() {
   return res
 }
 
-export async function sendRequestWithRefresh(url, options) {
+export async function sendRequestWithRefresh(url: string, options: RequestInit) {
   try {
     return await sendRequest(url, options)
-  } catch (err) {
+  } catch (err: any) {
     if (err.message === 'jwt expired' || err.message === 'jwt malformed') {
       const refreshData = await refreshTokens()
       options.headers = {
@@ -66,18 +72,18 @@ export const getIngredientsData = () => {
   })
 }
 
-export const sendOrderRequest = (ids, token) => {
+export const sendOrderRequest = (ids: string[], token: string) => {
   return sendRequest(CREATE_ORDER_ENDPOINT,
     {
       method: POST,
-      headers: headersWithAuth(token),
+      headers: headersWithAuth(token) as HeadersInit,
       body: JSON.stringify({
         ingredients: ids
       })
     })
 }
 
-export const registerUserRequest = inputData => {
+export const registerUserRequest = (inputData: registerUserData) => {
   return sendRequest(REGISTER_USER_ENDPOINT,
     {
       method: POST,
@@ -86,7 +92,7 @@ export const registerUserRequest = inputData => {
     })
 }
 
-export const sendResetTokenRequest = inputData => {
+export const sendResetTokenRequest = (inputData: resetTokenRequestData) => {
   return sendRequest(
     SEND_RESET_TOKEN_ENDPOINT,
     {
@@ -97,7 +103,7 @@ export const sendResetTokenRequest = inputData => {
   )
 }
 
-export const resetPasswordRequest = inputData => {
+export const resetPasswordRequest = (inputData: resetPasswordData) => {
   return sendRequest(
     RESET_PASSWORD_ENDPOINT,
     {
@@ -108,7 +114,7 @@ export const resetPasswordRequest = inputData => {
   )
 }
 
-export const loginUserRequest = inputData => {
+export const loginUserRequest = (inputData: loginUserData) => {
   return sendRequest(
     LOGIN_USER_ENDPOINT,
     {
@@ -125,16 +131,16 @@ export const getUserInfoRequest = () => {
     GET_USER_ENDPOINT,
     {
       method: GET,
-      headers: headersWithAuth(`Bearer ${accessToken}`)
+      headers: headersWithAuth(`Bearer ${accessToken}`) as HeadersInit
     })
 }
 
-export const patchUserInfoRequest = async body => {
+export const patchUserInfoRequest = async (inputData: patchUserData) => {
   const accessToken = getCookie('token')
   return sendRequestWithRefresh(UPDATE_USER_INFO_ENDPOINT, {
     method: PATCH,
-    headers: headersWithAuth(`Bearer ${accessToken}`),
-    body: JSON.stringify(body),
+    headers: headersWithAuth(`Bearer ${accessToken}`) as HeadersInit,
+    body: JSON.stringify(inputData),
   })
 }
 
@@ -144,7 +150,7 @@ export const logoutUserRequest = () => {
     LOGOUT_USER_ENDPOINT,
     {
       method: POST,
-      headers: headersWithAuth(token),
+      headers: headersWithAuth(token) as HeadersInit,
       body: JSON.stringify({token})
     }
   )
