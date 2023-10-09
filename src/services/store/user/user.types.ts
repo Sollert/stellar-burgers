@@ -6,7 +6,7 @@ export type InitialState = {
 }
 
 export type UserInfoData = {
-  email?: string;
-  name?: string;
-  password?: string;
+  email: string;
+  name: string;
+  password: string;
 }

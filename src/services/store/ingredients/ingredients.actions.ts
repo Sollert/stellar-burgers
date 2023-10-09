@@ -4,7 +4,7 @@ import {IngredientData} from "./ingredients.types";
 
 export const getIngredients = createAsyncThunk<
   IngredientData[],
-  any
+  void
 >('getIngredients', async () => {
   const res = await getIngredientsData()
   return res.data
