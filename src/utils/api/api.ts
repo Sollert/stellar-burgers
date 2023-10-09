@@ -15,11 +15,11 @@ import {
 import {GET, PATCH, POST} from "./methods";
 import {headers, headersWithAuth} from "./headers";
 import {
-  loginUserData,
-  patchUserData,
-  registerUserData,
-  resetPasswordData,
-  resetTokenRequestData
+  LoginUserData,
+  PatchUserData,
+  RegisterUserData,
+  ResetPasswordData,
+  ResetTokenRequestData
 } from "./api.types";
 
 const checkResponse = async (res: Response) => {
@@ -83,7 +83,7 @@ export const sendOrderRequest = (ids: string[], token: string) => {
     })
 }
 
-export const registerUserRequest = (inputData: registerUserData) => {
+export const registerUserRequest = (inputData: RegisterUserData) => {
   return sendRequest(REGISTER_USER_ENDPOINT,
     {
       method: POST,
@@ -92,7 +92,7 @@ export const registerUserRequest = (inputData: registerUserData) => {
     })
 }
 
-export const sendResetTokenRequest = (inputData: resetTokenRequestData) => {
+export const sendResetTokenRequest = (inputData: ResetTokenRequestData) => {
   return sendRequest(
     SEND_RESET_TOKEN_ENDPOINT,
     {
@@ -103,7 +103,7 @@ export const sendResetTokenRequest = (inputData: resetTokenRequestData) => {
   )
 }
 
-export const resetPasswordRequest = (inputData: resetPasswordData) => {
+export const resetPasswordRequest = (inputData: ResetPasswordData) => {
   return sendRequest(
     RESET_PASSWORD_ENDPOINT,
     {
@@ -114,7 +114,7 @@ export const resetPasswordRequest = (inputData: resetPasswordData) => {
   )
 }
 
-export const loginUserRequest = (inputData: loginUserData) => {
+export const loginUserRequest = (inputData: LoginUserData) => {
   return sendRequest(
     LOGIN_USER_ENDPOINT,
     {
@@ -135,7 +135,7 @@ export const getUserInfoRequest = () => {
     })
 }
 
-export const patchUserInfoRequest = async (inputData: patchUserData) => {
+export const patchUserInfoRequest = async (inputData: PatchUserData) => {
   const accessToken = getCookie('token')
   return sendRequestWithRefresh(UPDATE_USER_INFO_ENDPOINT, {
     method: PATCH,

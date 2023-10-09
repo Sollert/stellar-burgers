@@ -1,33 +1,24 @@
-export type requestOptions = {
-  method: string;
-  body?: string;
-  headers: {
-    'Content-Type': string;
-    Authorization?: string | null
-  }
-}
-
-export type registerUserData = {
+export type RegisterUserData = {
   name: string;
   email: string;
   body: string
 }
 
-export type resetTokenRequestData = {
+export type ResetTokenRequestData = {
   email: string
 }
 
-export type resetPasswordData = {
+export type ResetPasswordData = {
   password: string;
   token: string
 }
 
-export type loginUserData = {
+export type LoginUserData = {
   email: string;
   password: string
 }
 
-export type patchUserData = {
+export type PatchUserData = {
   name: string;
   email: string;
   password: string

@@ -1,4 +1,4 @@
-import {combineReducers, configureStore} from '@reduxjs/toolkit'
+import {Action, combineReducers, configureStore, ThunkAction} from '@reduxjs/toolkit'
 import {reducer as cartReducer} from './cart/cart.slice'
 import {reducer as ingredientsReducer} from './ingredients/ingredients.slice'
 import {reducer as orderDetailsReducer} from './orderDetails/orderDetails.slice'
@@ -31,3 +31,12 @@ export const store = configureStore({
       )
     ),
 })
+
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;

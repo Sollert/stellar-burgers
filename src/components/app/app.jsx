@@ -5,7 +5,7 @@ import {Route, Routes, useLocation, useNavigate} from 'react-router-dom'
 
 import {
   actions as orderDetailsActions
-} from '../../services/store/orderDetails/orderDetails.slice.js'
+} from '../../services/store/orderDetails/orderDetails.slice.ts'
 
 import {getIngredients} from '../../services/store/ingredients/ingredients.actions'
 import IngredientDetails from '../ingredient/ingredient-details/ingredient-details'
@@ -23,7 +23,7 @@ import ProfileForm from '../profile-form/profile-form.jsx'
 import ProtectedRoute from '../protected-route/protected-route.jsx'
 import ForgotPassword from '../../pages/forgot-password/forgot-password.jsx'
 import ResetPassword from '../../pages/reset-password/reset-password.jsx'
-import {getUserInfo} from '../../services/store/user/user.actions.js'
+import {getUserInfo} from '../../services/store/user/user.actions.ts'
 import Feed from '../../pages/feed/feed.jsx'
 import OrdersHistory from '../orders/orders-history/orders-history.jsx'
 import {Order} from '../../pages/order/order.jsx'

@@ -1,14 +1,14 @@
 import {useDispatch, useSelector} from 'react-redux'
 import {useDrop} from 'react-dnd'
 
-import {actions as cartActions} from '../../services/store/cart/cart.slice.js'
+import {actions as cartActions} from '../../services/store/cart/cart.slice'
 
 import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components'
 
 import BurgerConstructorToppingsList
-	from './burger-constructor-toppings-list/burger-constructor-toppings-list'
+  from './burger-constructor-toppings-list/burger-constructor-toppings-list'
 import BurgerConstructorOrderSubmit
-	from './burger-constructor-order-submit/burger-constructor-order-submit'
+  from './burger-constructor-order-submit/burger-constructor-order-submit'
 
 import styles from './burger-constructor.module.css'
 
