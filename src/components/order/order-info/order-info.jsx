@@ -10,9 +10,9 @@ import OrderInfoItem from '../order-info-item/order-info-item'
 import {wsClose, wsStart} from '../../../services/store/ws/ws.slice.js'
 
 import {
-	userAuthWsClose,
-	userAuthWsStart,
-} from '../../../services/store/userAuthWs/userAuthWs.slice.js'
+  userAuthWsClose,
+  userAuthWsStart,
+} from '../../../services/store/userAuthWs/userAuthWs.slice.ts'
 
 import {formatOrderNumber, getOrderStatus, getTimeStampString,} from '../../../utils/utils'
 
