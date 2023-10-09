@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {SyntheticEvent, useEffect, useState} from 'react'
 import {useLocation, useNavigate} from 'react-router-dom'
 
 import {resetPasswordRequest} from '../../utils/api/api'
@@ -24,7 +24,7 @@ export default function ResetPassword() {
     token: tokenValue,
   }
 
-  const onSubmitHandler = e => {
+  const onSubmitHandler = (e: SyntheticEvent) => {
     e.preventDefault()
     resetPasswordRequest(body)
       .then(() => {

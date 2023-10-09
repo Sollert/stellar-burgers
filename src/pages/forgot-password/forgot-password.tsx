@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {SyntheticEvent, useState} from 'react'
 import {useLocation, useNavigate} from 'react-router-dom'
 import {sendResetTokenRequest} from '../../utils/api/api'
 
@@ -15,7 +15,7 @@ export default function ForgotPassword() {
     email: emailValue,
   }
 
-  const onSubmitHandler = e => {
+  const onSubmitHandler = (e: SyntheticEvent) => {
     e.preventDefault()
     sendResetTokenRequest(body)
       .then(() => {
