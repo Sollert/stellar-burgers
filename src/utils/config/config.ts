@@ -5,7 +5,7 @@ import {
   getOrders,
   wsClose,
   wsStart,
-} from '../../services/store/ws/ws.slice.js'
+} from '../../services/store/ws/ws.slice'
 
 import {
   userAuthConnectionClosed,
@@ -14,9 +14,10 @@ import {
   userAuthGetOrders,
   userAuthWsClose,
   userAuthWsStart,
-} from '../../services/store/userAuthWs/userAuthWs.slice.js'
+} from '../../services/store/userAuthWs/userAuthWs.slice'
+import {BurgerIngredientsConfig} from "./config.type";
 
-export const burgerIngredientsConfig = {
+export const burgerIngredientsConfig: BurgerIngredientsConfig = {
   bun: {
     title: 'Булки',
   },

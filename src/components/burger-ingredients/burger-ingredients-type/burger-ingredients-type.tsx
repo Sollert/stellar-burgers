@@ -1,12 +1,13 @@
-import {forwardRef} from 'react'
+import {ForwardedRef, forwardRef} from 'react'
 
 import BurgerIngredientsCardsList
   from '../burger-ingredients-cards-list/burger-ingredients-cards-list'
 
 
 import styles from './burger-ingredients-type.module.css'
+import {BurgerIngredientsTypeProps} from "./burger-ingredients-type.types";
 
-const BurgerIngredientsType = forwardRef(({type, config}, ref) => {
+const BurgerIngredientsType = forwardRef(({type, config}: BurgerIngredientsTypeProps, ref: ForwardedRef<HTMLDivElement>) => {
   return (
     <li>
       <h3

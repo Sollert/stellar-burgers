@@ -1,30 +1,31 @@
 import {useEffect} from 'react'
 import {useMatch, useParams} from 'react-router-dom'
-import {useDispatch, useSelector} from 'react-redux'
 import clsx from 'clsx'
 
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 
 import OrderInfoItem from '../order-info-item/order-info-item'
 
-import {wsClose, wsStart} from '../../../services/store/ws/ws.slice.js'
+import {wsClose, wsStart} from '../../../services/store/ws/ws.slice'
 
 import {
   userAuthWsClose,
   userAuthWsStart,
-} from '../../../services/store/userAuthWs/userAuthWs.slice.ts'
+} from '../../../services/store/userAuthWs/userAuthWs.slice'
 
 import {formatOrderNumber, getOrderStatus, getTimeStampString,} from '../../../utils/utils'
 
 import styles from './order-info.module.css'
 import Loader from '../../loader/loader'
+import {useAppDispatch, useAppSelector} from "../../../services/hooks/hooks";
+import {IngredientDataWithCount, OrderDetailsData} from "./order-info.types";
 
 export default function OrderInfo({isModal = false}) {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const {id} = useParams()
   const match = useMatch(`/feed/${id}`)
-  const ingredients = useSelector(store => store.ingredients.ingredients)
-  const orders = useSelector(store => {
+  const ingredients = useAppSelector(store => store.ingredients.ingredients)
+  const orders = useAppSelector(store => {
     return match ? store.ws.orders.orders : store.userAuthWs.orders.orders
   })
 
@@ -36,22 +37,25 @@ export default function OrderInfo({isModal = false}) {
     }
   }, [dispatch, match])
 
-  const order = orders.find(order => order._id === id)
+  if (!orders) return <Loader/>
 
-  if (!order) return <Loader/>
+  const order: OrderDetailsData = orders.find((order) => order._id === id)!;
+
   const {name, number, status, ingredients: ingredientsIds, createdAt} = order
   const orderNumber = `#${formatOrderNumber(number)}`
   const orderStatus = getOrderStatus(status)
 
-  const orderIngredients = ingredientsIds.reduce((acc, current) => {
-    const ingredient = ingredients.find(item => item._id === current)
+  const orderIngredients = ingredientsIds.reduce<{
+    [k: string]: IngredientDataWithCount
+  }>((acc, current) => {
+    const ingredient = ingredients.find(item => item._id === current)!
     if (!acc[current]) {
       ingredient.type === 'bun'
-        ? (acc[current] = {...ingredient, count: 2})
-        : (acc[current] = {...ingredient, count: 1})
+        ? acc[current] = {...ingredient, count: 2}
+        : acc[current] = {...ingredient, count: 1}
     } else {
       ingredient.type === 'bun'
-        ? (acc[current].count = 2)
+        ? acc[current].count = 2
         : acc[current].count++
     }
 
@@ -112,7 +116,7 @@ export default function OrderInfo({isModal = false}) {
 					<span className={clsx('text', 'text_type_digits-default', 'mr-2')}>
 						{totalPrice}
 					</span>
-          <CurrencyIcon/>
+          <CurrencyIcon type={"primary"}/>
         </div>
       </div>
     </article>

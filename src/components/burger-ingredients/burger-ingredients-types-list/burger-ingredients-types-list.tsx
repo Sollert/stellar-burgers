@@ -1,6 +1,7 @@
 import BurgerIngredientsType from '../burger-ingredients-type/burger-ingredients-type'
 
 import styles from './burger-ingredients-types-list.module.css'
+import {BurgerIngredientsTypesListProps} from "./burger-ingredients-types-list.types";
 
 const BurgerIngredientsTypesList = ({
                                       config,
@@ -9,7 +10,7 @@ const BurgerIngredientsTypesList = ({
                                       mainRef,
                                       onScrollHandler,
                                       scrollContainerRef,
-                                    }) => {
+                                    }: BurgerIngredientsTypesListProps) => {
   return (
     <ul
       className={`${styles.types__list} custom-scroll`}

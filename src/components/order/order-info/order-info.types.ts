@@ -13,9 +13,10 @@ export type IngredientData = {
   readonly image_mobile: string;
   readonly image_large: string;
   readonly __v: number;
-  count: number;
   uid?: string;
 }
+
+export type IngredientDataWithCount = IngredientData & { count: number }
 
 export type OrderDetailsData = {
   readonly _id: string;

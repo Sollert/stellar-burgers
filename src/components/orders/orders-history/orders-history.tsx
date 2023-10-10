@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import {
   userAuthWsClose,
   userAuthWsStart,
-} from '../../../services/store/userAuthWs/userAuthWs.slice.js'
+} from '../../../services/store/userAuthWs/userAuthWs.slice'
 
 import OrdersList from '../orders-list/orders-list'
 

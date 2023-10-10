@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import {useEffect} from 'react'
 
-import {wsClose, wsStart} from '../../../services/store/ws/ws.slice.js'
+import {wsClose, wsStart} from '../../../services/store/ws/ws.slice'
 
 import OrdersNumbers from '../orders-numbers/orders-numbers'
 import OrdersList from '../orders-list/orders-list'
