@@ -37,7 +37,7 @@ export default function OrderInfo({isModal = false}) {
     }
   }, [dispatch, match])
 
-  if (!orders) return <Loader/>
+  if (orders.length === 0) return <Loader/>
 
   const order: OrderDetailsData = orders.find((order) => order._id === id)!;
 

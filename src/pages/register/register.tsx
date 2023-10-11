@@ -2,14 +2,14 @@ import {useCallback, useMemo, useState} from 'react'
 
 import Form from '../../components/form/form'
 import FormInput from '../../components/form/form-input/form-input'
-import {useDispatch} from 'react-redux'
 import {registerUser} from '../../services/store/user/user.actions'
+import {useAppDispatch} from "../../services/hooks/hooks";
 
 export default function Register() {
   const [nameValue, setNameValue] = useState('')
   const [emailValue, setEmailValue] = useState('')
   const [passwordValue, setPasswordValue] = useState('')
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const body = useMemo(
     () => ({

@@ -2,13 +2,13 @@ import {useCallback, useState} from 'react'
 
 import Form from '../../components/form/form'
 import FormInput from '../../components/form/form-input/form-input'
-import {useDispatch} from 'react-redux'
 import {loginUser} from '../../services/store/user/user.actions'
+import {useAppDispatch} from "../../services/hooks/hooks";
 
 export default function Login() {
   const [emailValue, setEmailValue] = useState('')
   const [passwordValue, setPasswordValue] = useState('')
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const body = {
     email: emailValue,

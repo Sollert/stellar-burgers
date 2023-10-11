@@ -1,5 +1,4 @@
 import {useRef} from 'react'
-import {useDispatch} from 'react-redux'
 import {useDrag, useDrop} from 'react-dnd'
 
 import {sortToppings} from '../../../services/store/cart/cart.actions'
@@ -9,9 +8,10 @@ import {ConstructorElement, DragIcon,} from '@ya.praktikum/react-developer-burge
 
 import styles from './burger-constructor-topping.module.css'
 import {BurgerConstructorToppingProps, Collect, DropObject} from "../../../services/types/types";
+import {useAppDispatch} from "../../../services/hooks/hooks";
 
 export const BurgerConstructorTopping = ({ingredient, index}: BurgerConstructorToppingProps) => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const constructorElementRef = useRef(null)
 
   const [, drop] = useDrop<
