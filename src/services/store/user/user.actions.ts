@@ -7,7 +7,7 @@ import {
   registerUserRequest,
 } from '../../../utils/api/api'
 import {saveTokens} from '../../../utils/utils'
-import {UserInfoData} from "./user.types";
+import {UserInfoData} from "../../types/types";
 
 export const registerUser = createAsyncThunk<
   UserInfoData,

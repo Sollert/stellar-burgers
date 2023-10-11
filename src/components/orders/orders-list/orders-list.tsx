@@ -3,7 +3,7 @@ import {Link, useLocation} from 'react-router-dom'
 import OrderCard from '../../order/order-card/order-card'
 
 import styles from './orders-list.module.css'
-import {LocationState, OrdersListProps} from "./orders-list.types";
+import {LocationState, OrdersListProps} from "../../../services/types/types";
 
 export default function OrdersList({orders, to, isUser = false}: OrdersListProps) {
   const location: LocationState = useLocation()

@@ -1,7 +1,7 @@
 import {createAction, createSlice, PayloadAction} from '@reduxjs/toolkit'
-import {InitialState, OrdersObject} from "./userAuthWs.types";
+import {OrdersObject, WsInitialState} from "../../types/types";
 
-const initialState: InitialState = {
+const initialState: WsInitialState = {
   wsConnected: false,
   orders: {
     orders: [],

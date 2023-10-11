@@ -1,8 +1,8 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {getUserInfo, loginUser, logoutUser, patchUserInfo, registerUser,} from './user.actions'
-import {InitialState, UserInfoData} from "./user.types";
+import {UserInfoData, UserInitialState} from "../../types/types";
 
-const initialState: InitialState = {
+const initialState: UserInitialState = {
   isRequest: false,
   isError: false,
   isAuth: false,

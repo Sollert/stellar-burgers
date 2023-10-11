@@ -1,6 +1,6 @@
 import {createAsyncThunk} from '@reduxjs/toolkit'
 import {getIngredientsData} from '../../../utils/api/api'
-import {IngredientData} from "./ingredients.types";
+import {IngredientData} from "../../types/types"
 
 export const getIngredients = createAsyncThunk<
   IngredientData[],

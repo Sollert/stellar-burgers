@@ -11,7 +11,7 @@ import BurgerConstructorOrderSubmit
 
 import styles from './burger-constructor.module.css'
 import {useAppDispatch, useAppSelector} from "../../services/hooks/hooks";
-import {Collect, IngredientData} from "./burger-constructor.types";
+import {Collect, IngredientData} from "../../services/types/types";
 
 const BurgerConstructor = () => {
   const dispatch = useAppDispatch()

@@ -1,6 +1,6 @@
 import {Navigate, useLocation} from 'react-router-dom'
 import {useAppSelector} from "../../services/hooks/hooks";
-import {LocationState, ProtectedRouteProps} from "./protected-route.types";
+import {LocationState, ProtectedRouteProps} from "../../services/types/types";
 
 export default function ProtectedRoute({children, anonymous = false}: ProtectedRouteProps) {
   const isAuth = useAppSelector(store => store.user.isAuth)

@@ -1,4 +1,4 @@
-import {HeaderLinkProps} from "./header-link.types";
+import {HeaderLinkProps} from "../../../services/types/types";
 
 const HeaderLinkText = ({isActive, text}: HeaderLinkProps) => {
   return <span className={`${!isActive && 'text_color_inactive'}`}>{text}</span>

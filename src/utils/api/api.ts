@@ -20,7 +20,7 @@ import {
   RegisterUserData,
   ResetPasswordData,
   ResetTokenRequestData
-} from "./api.types";
+} from "../../services/types/types";
 
 const checkResponse = async (res: Response) => {
   return res.ok

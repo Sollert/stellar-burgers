@@ -1,4 +1,4 @@
-import {CookieOptions} from "./cookie.types";
+import {CookieOptions} from "../../services/types/types";
 
 export const setCookie = (name: string, value: string, options: CookieOptions) => {
   const {expires, path, domain, secure} = options

@@ -5,7 +5,7 @@ import styles from './navbar.module.css'
 import {logoutUser} from '../../services/store/user/user.actions'
 import {deleteCookie} from '../../utils/cookie/cookie'
 import {useAppDispatch} from "../../services/hooks/hooks";
-import {Location} from "./navbar.types";
+import {Location} from "../../services/types/types";
 
 export default function Navbar() {
   const dispatch = useAppDispatch()

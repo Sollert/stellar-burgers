@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import {Button} from '@ya.praktikum/react-developer-burger-ui-components'
 
 import styles from './form.module.css'
-import {FormProps} from "./form.types";
+import {FormProps} from "../../services/types/types";
 
 export default function Form({
                                children,

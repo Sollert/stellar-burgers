@@ -4,7 +4,7 @@ import {Button, Input,} from '@ya.praktikum/react-developer-burger-ui-components
 import styles from './profile-form.module.css'
 import {getUserInfo, patchUserInfo,} from '../../services/store/user/user.actions'
 import {useAppDispatch, useAppSelector} from "../../services/hooks/hooks";
-import {PassInputType} from "./profile-form.types";
+import {PassInputType} from "../../services/types/types";
 
 export default function ProfileForm() {
   const dispatch = useAppDispatch()

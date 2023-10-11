@@ -5,7 +5,7 @@ import BurgerIngredientsCardsList
 
 
 import styles from './burger-ingredients-type.module.css'
-import {BurgerIngredientsTypeProps} from "./burger-ingredients-type.types";
+import {BurgerIngredientsTypeProps} from "../../../services/types/types";
 
 const BurgerIngredientsType = forwardRef(({type, config}: BurgerIngredientsTypeProps, ref: ForwardedRef<HTMLDivElement>) => {
   return (

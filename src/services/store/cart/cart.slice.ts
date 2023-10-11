@@ -1,8 +1,8 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {v4 as uuidv4} from 'uuid'
-import {IngredientData, InitialState} from "./cart.types";
+import {CartInitialState, IngredientData} from "../../types/types";
 
-const initialState: InitialState = {
+const initialState: CartInitialState = {
   bun: null,
   toppings: [],
   totalPrice: 0,

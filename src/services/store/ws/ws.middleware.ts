@@ -1,5 +1,5 @@
 import {getCookie} from '../../../utils/cookie/cookie'
-import {UserAuthWsOptions, WsOptions} from "./ws.types";
+import {UserAuthWsOptions, WsOptions} from "../../types/types";
 import {Middleware} from "redux";
 import {RootState} from "../store";
 

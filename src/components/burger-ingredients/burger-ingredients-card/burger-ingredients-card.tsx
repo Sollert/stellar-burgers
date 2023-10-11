@@ -4,11 +4,7 @@ import {Counter, CurrencyIcon,} from '@ya.praktikum/react-developer-burger-ui-co
 import styles from './burger-ingredients-card.module.css'
 import {Link, useLocation} from 'react-router-dom'
 import {useAppSelector} from "../../../services/hooks/hooks";
-import {
-  BurgerIngredientsCardProps,
-  CartState,
-  IngredientData
-} from "./burger-ingredients-card.types";
+import {BurgerIngredientsCardProps, CartState, IngredientData} from '../../../services/types/types';
 
 const BurgerIngredientsCard = ({item}: BurgerIngredientsCardProps) => {
   const location = useLocation()

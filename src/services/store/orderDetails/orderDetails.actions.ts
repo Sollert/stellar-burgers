@@ -1,7 +1,7 @@
 import {createAsyncThunk} from '@reduxjs/toolkit'
 import {sendOrderRequest} from '../../../utils/api/api'
 import {getCookie} from '../../../utils/cookie/cookie'
-import {OrderDetailsData} from "./orderDetails.types";
+import {OrderDetailsData} from "../../types/types";
 
 export const createOrder = createAsyncThunk<
   OrderDetailsData,

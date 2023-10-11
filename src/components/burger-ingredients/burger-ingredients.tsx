@@ -6,7 +6,7 @@ import BurgerIngredientsTypesList
 
 
 import styles from './burger-ingredients.module.css'
-import {BurgerIngredientsProps} from "./burger-ingredients.types";
+import {BurgerIngredientsProps} from '../../services/types/types';
 
 const BurgerIngredients = ({config}: BurgerIngredientsProps) => {
   const [currentTab, setCurrentTab] = useState('Булки')

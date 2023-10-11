@@ -1,8 +1,8 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {getIngredients} from './ingredients.actions'
-import {IngredientData, InitialState} from "./ingredients.types";
+import {IngredientData, IngredientsInitialState} from "../../types/types";
 
-const initialState: InitialState = {
+const initialState: IngredientsInitialState = {
   isLoading: false,
   isError: false,
   ingredients: [],

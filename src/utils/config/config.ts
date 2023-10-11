@@ -15,9 +15,9 @@ import {
   userAuthWsClose,
   userAuthWsStart,
 } from '../../services/store/userAuthWs/userAuthWs.slice'
-import {BurgerIngredientsConfig} from "./config.type";
+import {Config} from "../../services/types/types";
 
-export const burgerIngredientsConfig: BurgerIngredientsConfig = {
+export const burgerIngredientsConfig: Config = {
   bun: {
     title: 'Булки',
   },

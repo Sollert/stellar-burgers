@@ -7,7 +7,7 @@ import ModalOverlay from './modal-overlay/modal-overlay'
 import PropTypes from 'prop-types'
 
 import styles from './modal.module.css'
-import {ModalProps} from "./modal.types";
+import {ModalProps} from "../../services/types/types";
 
 const modalsRoot: HTMLElement | null = document.querySelector("#modal");
 

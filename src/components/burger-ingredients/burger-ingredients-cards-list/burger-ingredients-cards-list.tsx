@@ -1,6 +1,6 @@
 import BurgerIngredientsCard from '../burger-ingredients-card/burger-ingredients-card'
 import {useAppSelector} from "../../../services/hooks/hooks";
-import {BurgerIngredientsCardsListProps} from "./burger-ingredients-cards-list.types";
+import {BurgerIngredientsCardsListProps} from "../../../services/types/types";
 
 export const BurgerIngredientsCardsList = ({type}: BurgerIngredientsCardsListProps) => {
   const ingredients = useAppSelector(store => store.ingredients.ingredients)

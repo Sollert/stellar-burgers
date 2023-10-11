@@ -1,1 +1,0 @@
-export type PassInputType = 'password' | 'text' | 'email'

@@ -9,7 +9,7 @@ import {formatOrderNumber, getOrderStatus, getTimeStampString,} from '../../../u
 
 import styles from './order-card.module.css'
 import {useAppSelector} from "../../../services/hooks/hooks";
-import {OrderCardProps} from "./order-card.types";
+import {OrderCardProps} from "../../../services/types/types";
 
 export default function OrderCard({order, isUser}: OrderCardProps) {
   const ingredients = useAppSelector(store => store.ingredients.ingredients)

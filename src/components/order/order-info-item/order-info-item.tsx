@@ -4,7 +4,7 @@ import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import IngredientIcon from '../../ingredient/ingredient-icon/ingedient-icon'
 
 import styles from './order-info-item.module.css'
-import {OrderInfoItemProps} from "./order-info-item.types";
+import {OrderInfoItemProps} from "../../../services/types/types";
 
 export default function OrderInfoItem({ingredient}: OrderInfoItemProps) {
   const {name, image_mobile: imageUrl, price, count} = ingredient

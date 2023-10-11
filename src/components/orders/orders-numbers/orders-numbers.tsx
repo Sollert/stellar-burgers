@@ -5,7 +5,7 @@ import {formatOrderNumber} from '../../../utils/utils'
 
 import styles from './orders-numbers.module.css'
 import {useAppSelector} from "../../../services/hooks/hooks";
-import {OrderDetailsData, OrdersNumbersProps} from "./orders-numbers.types"
+import {OrderDetailsData, OrdersNumbersProps} from "../../../services/types/types"
 
 
 export default function OrdersNumbers({doneOrders = false, title}: OrdersNumbersProps) {

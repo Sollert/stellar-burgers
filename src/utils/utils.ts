@@ -1,5 +1,5 @@
 import {setCookie} from './cookie/cookie'
-import {TokensData} from "./utils.types";
+import {TokensData} from "../services/types/types";
 
 export function saveTokens(data: TokensData) {
   localStorage.setItem('refreshToken', data.refreshToken)

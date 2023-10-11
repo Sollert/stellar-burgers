@@ -18,7 +18,7 @@ import {formatOrderNumber, getOrderStatus, getTimeStampString,} from '../../../u
 import styles from './order-info.module.css'
 import Loader from '../../loader/loader'
 import {useAppDispatch, useAppSelector} from "../../../services/hooks/hooks";
-import {IngredientDataWithCount, OrderDetailsData} from "./order-info.types";
+import {IngredientDataWithCount, OrderDetailsData} from "../../../services/types/types";
 
 export default function OrderInfo({isModal = false}) {
   const dispatch = useAppDispatch()

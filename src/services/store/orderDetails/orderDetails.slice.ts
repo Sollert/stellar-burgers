@@ -1,8 +1,8 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {createOrder} from './orderDetails.actions'
-import {InitialState, OrderDetailsData} from "./orderDetails.types";
+import {OrderDetailsData, OrderDetailsInitialState} from "../../types/types";
 
-const initialState: InitialState = {
+const initialState: OrderDetailsInitialState = {
   isLoading: false,
   isError: false,
   order: null,

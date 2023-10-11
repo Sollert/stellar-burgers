@@ -2,7 +2,7 @@ import {useMemo} from 'react'
 import clsx from 'clsx'
 
 import styles from './ingredient-icon.module.css'
-import {IngredientIconProps} from "./ingredient-icon.types";
+import {IngredientIconProps} from "../../../services/types/types";
 
 export default function IngredientIcon({
                                          imageUrl,

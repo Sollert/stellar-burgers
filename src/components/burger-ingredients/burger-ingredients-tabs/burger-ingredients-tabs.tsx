@@ -1,6 +1,6 @@
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-ingredients-tabs.module.css';
-import {BurgerIngredientsTabsProps} from "./burger-ingredients-tabs.types";
+import {BurgerIngredientsTabsProps} from "../../../services/types/types";
 
 const BurgerIngredientsTabs = ({current, setCurrent}: BurgerIngredientsTabsProps) => {
   return (

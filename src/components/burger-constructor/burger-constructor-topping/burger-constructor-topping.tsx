@@ -8,11 +8,7 @@ import {actions as cartActions} from '../../../services/store/cart/cart.slice'
 import {ConstructorElement, DragIcon,} from '@ya.praktikum/react-developer-burger-ui-components'
 
 import styles from './burger-constructor-topping.module.css'
-import {
-  BurgerConstructorToppingProps,
-  Collect,
-  DropObject
-} from "./burger-constructor-topping.types";
+import {BurgerConstructorToppingProps, Collect, DropObject} from "../../../services/types/types";
 
 export const BurgerConstructorTopping = ({ingredient, index}: BurgerConstructorToppingProps) => {
   const dispatch = useDispatch()

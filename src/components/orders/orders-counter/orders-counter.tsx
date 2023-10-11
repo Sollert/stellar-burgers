@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 
 import styles from './orders-counter.module.css'
-import {OrdersCounterProps} from "./ordrers-counter.types";
+import {OrdersCounterProps} from "../../../services/types/types";
 
 export default function OrdersCounter({title, number}: OrdersCounterProps) {
   return (

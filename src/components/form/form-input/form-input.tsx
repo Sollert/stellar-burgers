@@ -6,7 +6,7 @@ import {
   FormInputOnIconClickHandler,
   FormInputProps,
   FormInputState
-} from "./form-input.types";
+} from "../../../services/types/types";
 
 export default function FormInput({
                                     name,
